@@ -19,7 +19,7 @@ public class Game extends Canvas implements Runnable
 
     private synchronized void start()
     {
-        if(isRunning) return;
+        if (isRunning) return;
 
         thread = new Thread(this, "Game");
         thread.start();
