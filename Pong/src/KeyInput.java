@@ -11,8 +11,6 @@ public class KeyInput extends KeyAdapter
     {
         super.keyPressed(e);
         keyEvents.add(e);
-        System.out.print("Key pressed!");
-        System.out.println(e);
     }
 
     @Override
@@ -20,12 +18,10 @@ public class KeyInput extends KeyAdapter
     {
         super.keyReleased(e);
         keyEvents.add(e);
-        System.out.println("Key pressed!");
-        System.out.println(e);
     }
 
-    public LinkedList<KeyEvent> getKeyEvents()
+    public KeyEvent pollEvent()
     {
-        return keyEvents;
+        return keyEvents.pollFirst();
     }
 }

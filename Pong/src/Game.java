@@ -17,6 +17,7 @@ public class Game extends Canvas implements Runnable
         new Window(WIDTH, HEIGHT, title, this);
         keyInput = new KeyInput();
         start();
+        this.addKeyListener(keyInput);
     }
 
     private synchronized void start()
