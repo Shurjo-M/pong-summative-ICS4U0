@@ -1,8 +1,8 @@
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class Game extends Canvas implements Runnable{
-
+public class Game extends Canvas implements Runnable
+{
     // Variable Declaration
     public static int WIDTH = 800, HEIGHT = 608;
     public String title = "Pong";
@@ -11,7 +11,8 @@ public class Game extends Canvas implements Runnable{
     private boolean isRunning = false;
 
     // Constructor
-    public Game(){
+    public Game()
+    {
         new Window(WIDTH, HEIGHT, title, this);
         start();
     }
@@ -42,28 +43,28 @@ public class Game extends Canvas implements Runnable{
         // Variable Declaration
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
-        double ns = 1000000000 / amountOfTicks;
+        double ns = 1_000_000_000 / amountOfTicks;
         double delta = 0;
         long timer = System.currentTimeMillis();
-        int frames = 0;
 
         // Loop to render and update game
-        while(isRunning){
+        while(isRunning)
+        {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
 
-            while(delta >= 1){
+            while(delta >= 1)
+            {
                 tick(delta);
                 delta--;
             }
 
             render();
-            frames++;
 
-            if(System.currentTimeMillis() - timer > 1000){
+            if(System.currentTimeMillis() - timer > 1000)
+            {
                 timer += 1000;
-                frames = 0;
             }
         }
 
@@ -71,15 +72,18 @@ public class Game extends Canvas implements Runnable{
     }
 
     // Updates the game
-    private void tick(double dt){
+    private void tick(double dt)
+    {
         System.out.println(dt);
     }
 
     // Renders the game
-    private void render(){
+    private void render()
+    {
         BufferStrategy bs = this.getBufferStrategy();
 
-        if(bs == null){
+        if(bs == null)
+        {
             this.createBufferStrategy(3);
             return;
         }
