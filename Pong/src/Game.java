@@ -54,7 +54,7 @@ public class Game extends Canvas implements Runnable{
             lastTime = now;
 
             while(delta >= 1){
-                tick();
+                tick(delta);
                 delta--;
             }
 
@@ -71,8 +71,8 @@ public class Game extends Canvas implements Runnable{
     }
 
     // Updates the game
-    private void tick(){
-
+    private void tick(double dt){
+        System.out.println(dt);
     }
 
     // Renders the game
@@ -92,10 +92,5 @@ public class Game extends Canvas implements Runnable{
 
         bs.show();
         g.dispose();
-    }
-
-    // Main
-    public static void main(String[] args){
-        new Game();
     }
 }
