@@ -4,27 +4,31 @@ import java.util.LinkedList;
 
 public class Input
 {
-    private final LinkedList<KeyEvent> keyEvents = new LinkedList<>();
+    private static final LinkedList<KeyEvent> keyEvents = new LinkedList<>();  // keep track of key input asynchronously
+    private static final KeyAdapter _keyAdapter;  // name is unused, but methods are important!
 
-    // name is unused, but methods are important!
-    private final KeyAdapter _keyAdapter = new KeyAdapter()
+    // necessary evil
+    static
     {
-        @Override
-        public void keyPressed(KeyEvent e)
+        _keyAdapter = new KeyAdapter()
         {
-            super.keyPressed(e);
-            keyEvents.add(e);
-        }
+            @Override
+            public void keyPressed(KeyEvent e)
+            {
+                super.keyPressed(e);
+                keyEvents.add(e);
+            }
 
-        @Override
-        public void keyReleased(KeyEvent e)
-        {
-            super.keyReleased(e);
-            keyEvents.add(e);
-        }
-    };
+            @Override
+            public void keyReleased(KeyEvent e)
+            {
+                super.keyReleased(e);
+                keyEvents.add(e);
+            }
+        };
+    }
 
-    public LinkedList<KeyEvent> getKeyEvents()
+    public static LinkedList<KeyEvent> getKeyEvents()
     {
         return keyEvents;
     }
