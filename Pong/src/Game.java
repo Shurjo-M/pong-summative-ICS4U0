@@ -9,12 +9,13 @@ public class Game extends Canvas implements Runnable
 
     private Thread thread;
     private boolean isRunning = false;
-    private final KeyInput keyInput = new KeyInput();
+    private final KeyInput keyInput;
 
     // Constructor
     public Game()
     {
         new Window(WIDTH, HEIGHT, title, this);
+        keyInput = new KeyInput();
         start();
     }
 
