@@ -9,6 +9,7 @@ public class Game extends Canvas implements Runnable
 
     private Thread thread;
     private boolean isRunning = false;
+    private final KeyInput keyInput = new KeyInput();
 
     // Constructor
     public Game()
@@ -77,9 +78,9 @@ public class Game extends Canvas implements Runnable
     }
 
     // Updates the game
-    private void tick(double dt)
+    private void tick(final double dt)
     {
-        System.out.println(dt);
+
     }
 
     // Renders the game
