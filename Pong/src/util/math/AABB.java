@@ -2,7 +2,8 @@ package util.math;
 
 public class AABB
 {
-    float x, y;
+    public float x;
+    public float y;
     float w, h;
 
     /*
