@@ -1,5 +1,8 @@
+import model.Entity;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 public class Game extends Canvas implements Runnable
 {
@@ -10,6 +13,7 @@ public class Game extends Canvas implements Runnable
     private Thread thread;
     private boolean isRunning = false;
     private final KeyInput keyInput;
+    public ArrayList<Entity> entities;
 
     // Constructor
     public Game()
@@ -18,6 +22,7 @@ public class Game extends Canvas implements Runnable
         keyInput = new KeyInput();
         start();
         this.addKeyListener(keyInput);
+        entities = new ArrayList<>();
     }
 
     private synchronized void start()
@@ -25,8 +30,10 @@ public class Game extends Canvas implements Runnable
         if (isRunning) return;
 
         thread = new Thread(this, "Game");
-        thread.start();
         isRunning = true;
+
+
+        thread.start();
     }
 
     private synchronized void stop()
@@ -56,18 +63,24 @@ public class Game extends Canvas implements Runnable
         long timer = System.currentTimeMillis();
 
         // Loop to render and update game
+        // This style of game loop was originally designed by Notch during the creation of minecraft
+        // it updates the game 60 times a second and renders the game during each loop regardless of timing.
         while(isRunning)
         {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
 
+            // update the game at 60hz.
+            // ensure that any updates missed by lag are computed
+            // (Is this the cause minecraft's lag spikes?)
             while(delta >= 1)
             {
                 tick(delta);
                 delta--;
             }
 
+            // render the game to the screen
             render();
 
             if(System.currentTimeMillis() - timer > 1000)
@@ -79,13 +92,20 @@ public class Game extends Canvas implements Runnable
         stop();
     }
 
-    // Updates the game
+
+
+    /**
+     * private void tick
+     * @param dt  time elapsed
+     */
     private void tick(final double dt)
     {
 
     }
 
-    // Renders the game
+    /**
+     * private void render
+     */
     private void render()
     {
         BufferStrategy bs = this.getBufferStrategy();

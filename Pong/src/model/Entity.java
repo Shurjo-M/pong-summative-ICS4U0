@@ -8,9 +8,18 @@ public abstract class Entity
     public AABB rect;
     private Vector2 velocity;
 
+    public Entity(AABB rect)
+    {
+        this.rect = rect;
+        velocity = Vector2.ZERO;
+    }
+
+    /**
+     * Update the entity
+     */
     public void update()
     {
-        rect.x += velocity.getX();
-        rect.y += velocity.getY();
+        rect.x += velocity.x;
+        rect.y += velocity.y;
     }
 }
