@@ -20,8 +20,14 @@ public class KeyInput extends KeyAdapter
         keyEvents.add(e);
     }
 
-    public KeyEvent pollEvent()
+    public LinkedList<KeyEvent> getKeyEvents()
     {
-        return keyEvents.pollFirst();
+        return keyEvents;
     }
+
+    public void flush()
+    {
+        keyEvents.clear();
+    }
+
 }

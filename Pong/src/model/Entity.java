@@ -6,7 +6,7 @@ import util.math.Vector2;
 public abstract class Entity
 {
     public AABB rect;
-    private Vector2 velocity;
+    protected Vector2 velocity;
 
     public Entity(AABB rect)
     {
