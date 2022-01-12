@@ -2,40 +2,47 @@ import model.Entity;
 import util.math.AABB;
 import util.math.Vector2;
 
-public class Player {
+import java.awt.event.KeyEvent;
+
+public class Player extends Entity
+{
     AABB playerRect = new AABB(50, 50, 32, 32);
-    Entity player = new Entity(playerRect)
+    KeyInput keyInput;
+
+    @Override
+    public void update()
     {
-        @Override
-        public void update()
+        var keys = keyInput.getKeyEvents();
+
+        velocity = Vector2.ZERO;
+        for (var event : keys)
         {
-            var keys = keyInput.getKeyEvents();
-
-            velocity = Vector2.ZERO;
-            for (var event : keys)
+            var code = event.getKeyCode();
+            if (code == KeyEvent.VK_W)
             {
-                var code = event.getKeyCode();
-                if (code == KeyEvent.VK_W)
-                {
-                    velocity.y -= 2.5f;
-                }
-                if (code == KeyEvent.VK_A)
-                {
-                    velocity.x -= 2.5f;
-                }
-                if (code == KeyEvent.VK_S)
-                {
-                    velocity.y += 2.5f;
-                }
-                if (code == KeyEvent.VK_D)
-                {
-                    velocity.x += 2.5f;
-                }
+                velocity.y -= 2.5f;
             }
-
-
-            super.update();
+            if (code == KeyEvent.VK_A)
+            {
+                velocity.x -= 2.5f;
+            }
+            if (code == KeyEvent.VK_S)
+            {
+                velocity.y += 2.5f;
+            }
+            if (code == KeyEvent.VK_D)
+            {
+                velocity.x += 2.5f;
+            }
         }
-    };
-        entities.add(player);
+
+
+        super.update();
+    }
+
+    public Player(AABB rect, KeyInput input)
+    {
+        super(rect);
+        keyInput = input;
+    }
 }

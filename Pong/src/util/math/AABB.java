@@ -23,7 +23,6 @@ public class AABB
 
     /*
      * TODO: add methods to check for:
-     *     - CONSTRUCTOR cuz im stoopid :P
      *     - Collision with point (Vec2)
      */
 
@@ -39,6 +38,5 @@ public class AABB
                this.y < other.y + other.h &&
                this.h + this.y > other.y;
     }
-
 }
 

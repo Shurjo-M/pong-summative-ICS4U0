@@ -35,6 +35,8 @@ public class Game extends Canvas implements Runnable
         thread = new Thread(this, "Game");
         isRunning = true;
 
+        Player player = new Player(new AABB(32, 32, 32, 32), keyInput);
+
         thread.start();
     }
 
