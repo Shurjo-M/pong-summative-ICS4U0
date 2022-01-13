@@ -1,9 +1,7 @@
 import model.Entity;
 import util.math.AABB;
-import util.math.Vector2;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
@@ -35,7 +33,8 @@ public class Game extends Canvas implements Runnable
         thread = new Thread(this, "Game");
         isRunning = true;
 
-        Player player = new Player(new AABB(32, 32, 32, 32), keyInput);
+        Player player = new Player(new AABB(32, 32, 32, 32));
+        entities.add(player);
 
         thread.start();
     }
@@ -86,6 +85,8 @@ public class Game extends Canvas implements Runnable
             }
 
             // render the game to the screen
+            // why is this called every frame? update is only called 60 times a second, so why is this even here?
+            // changes to game state only happen in update, so why does moving this line break everything?
             render();
 
             if(System.currentTimeMillis() - timer > 1000)
