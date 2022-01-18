@@ -1,8 +1,9 @@
-import model.Entity;
+package model;
+
 import util.math.AABB;
 import util.math.Vector2;
-
 import java.awt.event.KeyEvent;
+
 
 public class Player extends Entity
 {
@@ -16,7 +17,7 @@ public class Player extends Entity
     @Override
     public void input(final int keyCode)
     {
-
+        System.out.println(keyCode);
     }
 
     @Override

@@ -1,7 +1,9 @@
 import model.Entity;
+import model.Player;
 import util.math.AABB;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
@@ -73,15 +75,23 @@ public class Game extends Canvas implements Runnable
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
+            var keyEvents = keyInput.getKeyEvents();
 
             // update the game at 60hz.
             // ensure that any updates missed by lag are computed
             // (Is this the cause minecraft's lag spikes?)
             while(delta >= 1)
             {
+                KeyEvent code;
+                while ((code = keyEvents.pollFirst()) != null)
+                {
+                    var finalCode = code;
+                    entities.forEach(
+                            (entity) -> entity.input(finalCode.getKeyCode())
+                    );
+                }
                 tick(delta);
                 delta--;
-                keyInput.flush();
             }
 
             // render the game to the screen
