@@ -1,41 +1,31 @@
-package model;
+package model
 
-import util.math.AABB;
-import util.math.Vector2;
-import java.awt.event.KeyEvent;
+import util.math.AABB
+import util.math.Vector2
+import java.awt.event.KeyEvent
 
-
-public class Player extends Entity
+class Player(rect: AABB?) : Entity(rect)
 {
-    Vector2 direction = Vector2.ZERO;
+    var direction: Vector2 = Vector2.ZERO
 
     /**
      * Called every time a keyboard input event is polled
      * (refer to main game loop for input polling)
      * @param keyCode the keyboard key that was pressed
      */
-    @Override
-    public void input(final int keyCode)
+    override fun input(keyCode: Int)
     {
-        System.out.println(keyCode);
+        println(keyCode)
     }
 
-    @Override
-    public void update()
+    override fun update()
     {
-
-        super.update();
+        // TODO :: add some keyboard controls here!
+        super.update()
     }
 
-    public Player(AABB rect)
+    init
     {
-        super(rect);
 
-        // subscribe to input events
-        // event name, active
-        events.putIfAbsent(KeyEvent.VK_W, 0);
-        events.putIfAbsent(KeyEvent.VK_A, 0);
-        events.putIfAbsent(KeyEvent.VK_S, 0);
-        events.putIfAbsent(KeyEvent.VK_D, 0);
     }
 }

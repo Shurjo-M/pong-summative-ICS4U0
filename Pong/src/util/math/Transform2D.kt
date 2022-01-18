@@ -1,6 +1,3 @@
-package util.math;
+package util.math
 
-public record Transform2D(Vector2 translate, Vector2 scale, double rotation)
-{
-    
-}
+data class Transform2D(val translation: Vector2, val scale: Vector2, val rotation: Float)
