@@ -6,43 +6,35 @@ import java.awt.event.KeyEvent;
 
 public class Player extends Entity
 {
-    AABB playerRect = new AABB(50, 50, 32, 32);
-    KeyInput keyInput;
+    Vector2 direction = Vector2.ZERO;
+
+    /**
+     * Called every time a keyboard input event is polled
+     * (refer to main game loop for input polling)
+     * @param keyCode the keyboard key that was pressed
+     */
+    @Override
+    public void input(final int keyCode)
+    {
+
+    }
 
     @Override
     public void update()
     {
-        var keys = keyInput.getKeyEvents();
-
-        velocity = Vector2.ZERO;
-        for (var event : keys)
-        {
-            var code = event.getKeyCode();
-            if (code == KeyEvent.VK_W)
-            {
-                velocity.y -= 2.5f;
-            }
-            if (code == KeyEvent.VK_A)
-            {
-                velocity.x -= 2.5f;
-            }
-            if (code == KeyEvent.VK_S)
-            {
-                velocity.y += 2.5f;
-            }
-            if (code == KeyEvent.VK_D)
-            {
-                velocity.x += 2.5f;
-            }
-        }
-
 
         super.update();
     }
 
-    public Player(AABB rect, KeyInput input)
+    public Player(AABB rect)
     {
         super(rect);
-        keyInput = input;
+
+        // subscribe to input events
+        // event name, active
+        events.putIfAbsent(KeyEvent.VK_W, 0);
+        events.putIfAbsent(KeyEvent.VK_A, 0);
+        events.putIfAbsent(KeyEvent.VK_S, 0);
+        events.putIfAbsent(KeyEvent.VK_D, 0);
     }
 }

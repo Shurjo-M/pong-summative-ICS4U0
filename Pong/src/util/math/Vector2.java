@@ -13,6 +13,10 @@ public class Vector2
 
     public static Vector2 ZERO = new Vector2(0, 0);
 
+    public Vector2 scale(float a)
+    {
+        return new Vector2(this.x * a, this.y * a);
+    }
 
     @Override
     public boolean equals(Object other)
@@ -21,7 +25,6 @@ public class Vector2
         {
             return (this.x == o.x && this.y == o.y);
         }
-
         return false;
     }
 }
