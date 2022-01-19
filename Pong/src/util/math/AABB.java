@@ -8,10 +8,10 @@ public class AABB
     /**
      * public class AABB.
      * Defines a rectangular area aligned with both axes. Used for basic collision detection.
-     * @param x
-     * @param y
-     * @param w
-     * @param h
+     * @param x x-position
+     * @param y y-position
+     * @param w width
+     * @param h height
      */
     public AABB(float x, float y, float w, float h)
     {
