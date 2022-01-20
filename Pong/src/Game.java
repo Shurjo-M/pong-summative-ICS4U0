@@ -39,14 +39,12 @@ public class Game extends Canvas implements Runnable
         thread = new Thread(this, "Game");
         isRunning = true;
 
-        Player player = new Player(new AABB(32, 32, 32, 32));
+        Player player = new Player(new AABB(32, 32, 16, 128));
         entities.add(player);
 
         // player controls
         eventManager.track(KeyEvent.VK_W);
-        eventManager.track(KeyEvent.VK_A);
         eventManager.track(KeyEvent.VK_S);
-        eventManager.track(KeyEvent.VK_D);
 
         // pause/play game
         eventManager.track(KeyEvent.VK_ESCAPE);
@@ -155,10 +153,6 @@ public class Game extends Canvas implements Runnable
         g.setColor(Color.WHITE);
         entities.forEach(
             (entity -> g.fillRect((int) entity.rect.x, (int) entity.rect.y, (int) entity.rect.w, (int) entity.rect.h))
-        );
-
-        entities.forEach(
-                entity -> g.fillRect(0,0,32, 32)
         );
 
         bs.show();

@@ -1,17 +1,18 @@
 package util.math
 
-class Vector2(x: Float, y: Float)
+class Vector2(var x: Float, var y: Float)
 {
-    var y: Float = x
-    var x: Float = y
 
     companion object
     {
-        @JvmStatic public val ZERO = Vector2(0f, 0f)
+        @JvmStatic
+        val ZERO = Vector2(0f, 0f)
     }
 
     /**
-     *
+     * Add two vectors
+     * @param b Vector to add this with
+     * @return the new vector
      */
     fun plus(b: Vector2): Vector2
     {
@@ -19,7 +20,9 @@ class Vector2(x: Float, y: Float)
     }
 
     /**
-     *
+     * Add two vectors
+     * @param b Vector to add this with
+     * @return the new vector
      */
     fun minus(b: Vector2): Vector2
     {
@@ -27,7 +30,7 @@ class Vector2(x: Float, y: Float)
     }
 
     /**
-     *
+     * Negate this vector
      */
     fun unaryMinus(): Vector2
     {
@@ -35,15 +38,19 @@ class Vector2(x: Float, y: Float)
     }
 
     /**
-     *
+     * Add two vectors
+     * @param a scalar to scale by
+     * @return the new vector
      */
-    fun times(a: Float): Vector2
+    operator fun times(a: Float): Vector2
     {
         return Vector2(this.x * a, this.y * a)
     }
 
     /**
-     *
+     * Add two vectors
+     * @param a scalar to scale by
+     * @return the new vector
      */
     fun div(a: Float): Vector2
     {
@@ -51,7 +58,8 @@ class Vector2(x: Float, y: Float)
     }
 
     /**
-     *
+     * @param other The other object to check equality with
+     * @return if the other vector is of equal direction and magnitude
      */
     override fun equals(other: Any?): Boolean
     {

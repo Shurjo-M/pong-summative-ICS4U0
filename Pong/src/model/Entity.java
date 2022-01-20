@@ -46,7 +46,7 @@ public abstract class Entity
 
     /**
      *
-     * @param manager
+     * @param manager EventManager that processes input events
      */
     public void input(EventManager manager)
     {}
@@ -62,6 +62,6 @@ public abstract class Entity
 
     public Entity getEntity(String name)
     {
-        return null;
+        return manager.getOrDefault(name, null);
     }
 }

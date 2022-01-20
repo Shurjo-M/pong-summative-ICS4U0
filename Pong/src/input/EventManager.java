@@ -14,6 +14,11 @@ public class EventManager
         actions = new HashMap<>();
     }
 
+    public float getActionStrength(int event)
+    {
+        return actions.getOrDefault(event, null);
+    }
+
     public void update(KeyEvent event)
     {
         var code = event.getKeyCode();
