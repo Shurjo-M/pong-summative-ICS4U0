@@ -17,6 +17,7 @@ public class Game extends Canvas implements Runnable
     private boolean isRunning = false;
     private final KeyInput keyInput;
     public ArrayList<Entity> entities;
+    EventManager eventManager;
 
     // Constructor
     public Game()
@@ -25,6 +26,7 @@ public class Game extends Canvas implements Runnable
         keyInput = new KeyInput();
         this.addKeyListener(keyInput);
         entities = new ArrayList<>();
+        eventManager = new EventManager();
         start();
     }
 
@@ -37,6 +39,15 @@ public class Game extends Canvas implements Runnable
 
         Player player = new Player(new AABB(32, 32, 32, 32));
         entities.add(player);
+
+        // player controls
+        eventManager.track(KeyEvent.VK_W);
+        eventManager.track(KeyEvent.VK_A);
+        eventManager.track(KeyEvent.VK_S);
+        eventManager.track(KeyEvent.VK_D);
+
+        // pause/play game
+        eventManager.track(KeyEvent.VK_ESCAPE);
 
         thread.start();
     }
@@ -82,13 +93,10 @@ public class Game extends Canvas implements Runnable
             // (Is this the cause minecraft's lag spikes?)
             while(delta >= 1)
             {
-                KeyEvent code;
-                while ((code = keyEvents.pollFirst()) != null)
+                KeyEvent event;
+                while ((event = keyEvents.pollFirst()) != null)
                 {
-                    var finalCode = code;
-                    entities.forEach(
-                            (entity) -> entity.input(finalCode.getKeyCode())
-                    );
+                    eventManager.update(event);
                 }
                 tick(delta);
                 delta--;
