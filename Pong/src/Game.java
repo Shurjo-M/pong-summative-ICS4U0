@@ -1,3 +1,5 @@
+import input.EventManager;
+import input.KeyInput;
 import model.Entity;
 import model.Player;
 import util.math.AABB;
@@ -98,6 +100,7 @@ public class Game extends Canvas implements Runnable
                 {
                     eventManager.update(event);
                 }
+
                 tick(delta);
                 delta--;
             }
@@ -124,6 +127,9 @@ public class Game extends Canvas implements Runnable
      */
     private void tick(final double dt)
     {
+        entities.forEach(
+                entity -> entity.input(eventManager)
+        );
         entities.forEach(Entity::update);
     }
 
@@ -136,7 +142,7 @@ public class Game extends Canvas implements Runnable
 
         if(bs == null)
         {
-            this.createBufferStrategy(3);
+            this.createBufferStrategy(2);
             return;
         }
 
