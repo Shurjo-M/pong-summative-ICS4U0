@@ -2,18 +2,18 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.io.IOException;
 
 public class Menu extends JPanel
 {
     final JLabel title = new JLabel("PONG");
-    final JButton start = new JButton("START");
-    final JButton main_menu = new JButton("MAIN MENU");
-    final JButton quit = new JButton("QUIT");
-    final JPanel bar1 = new BarPanel1();
-    final JPanel bar2 = new BarPanel2();
+    final JButton newGame = new JButton("NEW GAME");
+    final JButton mainMenu = new JButton("MAIN MENU");
+    final JButton quitGame = new JButton("QUIT GAME");
     final JPanel buttons = new JPanel();
     final JPanel titleP = new JPanel();
+    Font blippo;
 
     public Menu()
     {
@@ -25,76 +25,75 @@ public class Menu extends JPanel
 
     private void layoutView()
     {
+        try
+        {
+            blippo = Font.createFont(Font.TRUETYPE_FONT,
+                    new File("assets/Blippo.ttf"));
+
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
+                    new File("assets/Blippo.ttf")));
+
+            blippo = blippo.deriveFont(Font.PLAIN, 24);
+        } catch (IOException | FontFormatException e)
+        {
+            e.printStackTrace();
+        }
+
         // Title Panel
         titleP.setLayout(new FlowLayout());
+        titleP.setBackground(Color.black);
+
+        Font blippoBold = blippo.deriveFont(Font.BOLD, 32);
+        title.setFont(blippoBold);
+        title.setForeground(Color.white);
         titleP.add(this.title);
 
+
         // Buttons Panel
-        buttons.setLayout(new GridLayout(2,1));
+        buttons.setLayout(new BoxLayout(this.buttons, BoxLayout.Y_AXIS));
+        buttons.setBackground(Color.black);
+        buttons.setAlignmentX(CENTER_ALIGNMENT);
 
-        start.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        buttons.add(this.start);
+        buttons.add(Box.createRigidArea(new Dimension(50, 600/3)));
 
-        quit.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        buttons.add(this.quit);
+        newGame.setAlignmentX(CENTER_ALIGNMENT);
+        newGame.setBackground(Color.black);
+        newGame.setForeground(Color.white);
+        newGame.setBorder(BorderFactory.createLineBorder(Color.white));
+        newGame.setFont(this.blippo);
+        buttons.add(this.newGame);
 
-        // Bar Panels
-        bar1.setLayout(new FlowLayout());
-        bar1.setBackground(Color.black);
-        bar1.setBorder(BorderFactory.createEmptyBorder(50,50,50,50));
+        buttons.add(Box.createRigidArea(new Dimension(50, 50)));
 
-        bar2.setLayout(new GridBagLayout());
-        bar2.setBackground(Color.black);
-        bar2.setBorder(BorderFactory.createEmptyBorder(50,150,50,50));
+        quitGame.setAlignmentX(CENTER_ALIGNMENT);
+        quitGame.setBackground(Color.black);
+        quitGame.setForeground(Color.white);
+        quitGame.setBorder(BorderFactory.createLineBorder(Color.white));
+        quitGame.setFont(this.blippo);
+        buttons.add(this.quitGame);
+
+        buttons.setBorder(BorderFactory.createLineBorder(Color.white, 2));
 
         // Complete Layout
         this.setLayout(new BorderLayout());
         this.setBackground(Color.black);
+
         this.add(this.titleP, BorderLayout.NORTH);
         this.add(this.buttons, BorderLayout.CENTER);
-        this.add(this.bar1, BorderLayout.EAST);
-        this.add(this.bar2, BorderLayout.WEST);
     }
 
     private void registerControllers()
     {
         ButtonsController controller = new ButtonsController();
-        this.start.addActionListener(controller);
-        this.quit.addActionListener(controller);
-        this.main_menu.addActionListener(controller);
+        this.newGame.addActionListener(controller);
+        this.quitGame.addActionListener(controller);
+        this.mainMenu.addActionListener(controller);
     }
 
     private void update()
     {
 
-    }
-
-    static class BarPanel1 extends JPanel{
-        BarPanel1(){
-            setPreferredSize(new Dimension(300, 600));
-        }
-
-        @Override
-        public void paintComponent(Graphics g){
-            super.paintComponent(g);
-
-            g.setColor(Color.white);
-            g.fillRect(30, 50, 70, 200);
-        }
-    }
-
-    static class BarPanel2 extends JPanel{
-        BarPanel2(){
-            setPreferredSize(new Dimension(300, 600));
-        }
-
-        @Override
-        public void paintComponent(Graphics g){
-            super.paintComponent(g);
-
-            g.setColor(Color.white);
-            g.fillRect(130, 50, 70, 200);
-        }
     }
 
     public static void main(String[] args){
