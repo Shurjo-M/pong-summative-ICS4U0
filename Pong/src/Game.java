@@ -151,6 +151,10 @@ public class Game extends Canvas implements Runnable
             (entity -> g.fillRect((int) entity.rect.x, (int) entity.rect.y, (int) entity.rect.w, (int) entity.rect.h))
         );
 
+        entities.forEach(
+                entity -> g.fillRect(0,0,32, 32)
+        );
+
         bs.show();
         g.dispose();
     }
