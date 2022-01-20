@@ -6,24 +6,22 @@ import java.awt.image.BufferStrategy;
 
 public class Menu extends JPanel
 {
-    JLabel title = new JLabel("PONG");
-    JButton start = new JButton("START");
-    JButton main_menu = new JButton("MAIN MENU");
-    JButton quit = new JButton("QUIT");
-    Graphics g = this.getGraphics();
-    JPanel bar1 = new BarPanel1();
-    JPanel bar2 = new BarPanel2();
-    JPanel buttons = new JPanel();
-    JPanel titleP = new JPanel();
+    final JLabel title = new JLabel("PONG");
+    final JButton start = new JButton("START");
+    final JButton main_menu = new JButton("MAIN MENU");
+    final JButton quit = new JButton("QUIT");
+    final JPanel bar1 = new BarPanel1();
+    final JPanel bar2 = new BarPanel2();
+    final JPanel buttons = new JPanel();
+    final JPanel titleP = new JPanel();
 
-    public Menu( )
+    public Menu()
     {
         super();
         this.layoutView();
         this.registerControllers();
         this.update();
     }
-
 
     private void layoutView()
     {
@@ -58,7 +56,6 @@ public class Menu extends JPanel
         this.add(this.bar2, BorderLayout.WEST);
     }
 
-
     private void registerControllers()
     {
         ButtonsController controller = new ButtonsController();
@@ -67,13 +64,12 @@ public class Menu extends JPanel
         this.main_menu.addActionListener(controller);
     }
 
-
     private void update()
     {
 
     }
 
-    class BarPanel1 extends JPanel{
+    static class BarPanel1 extends JPanel{
         BarPanel1(){
             setPreferredSize(new Dimension(300, 600));
         }
@@ -87,7 +83,7 @@ public class Menu extends JPanel
         }
     }
 
-    class BarPanel2 extends JPanel{
+    static class BarPanel2 extends JPanel{
         BarPanel2(){
             setPreferredSize(new Dimension(300, 600));
         }
@@ -100,7 +96,6 @@ public class Menu extends JPanel
             g.fillRect(130, 50, 70, 200);
         }
     }
-
 
     public static void main(String[] args){
         Menu menu = new Menu();
