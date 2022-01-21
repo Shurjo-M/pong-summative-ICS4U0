@@ -42,6 +42,11 @@ public abstract class Entity
         entityLookupTable.putIfAbsent(name, this);
     }
 
+    public void ready()
+    {
+
+    }
+
     /**
      *
      * @param manager EventManager that processes input events
@@ -62,4 +67,6 @@ public abstract class Entity
     {
         return entityLookupTable.get(name);
     }
+
+
 }

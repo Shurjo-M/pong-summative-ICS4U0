@@ -3,12 +3,11 @@ package model
 import util.math.AABB
 import util.math.Vector2
 import java.util.*
-import kotlin.system.exitProcess
 
 class Ball : Entity(AABB(800f/2 - 16f, 600f/2 - 16f, 32f, 32f), "Ball")
 {
-    private val player = getEntity("Player")
-    private val enemy = getEntity("Enemy")
+    private lateinit var player: Entity
+    private lateinit var enemy: Entity
     var speed = 5f
     var direction = Vector2(0f, 0f)
     var rand = Random()
@@ -19,6 +18,11 @@ class Ball : Entity(AABB(800f/2 - 16f, 600f/2 - 16f, 32f, 32f), "Ball")
         direction.x = if (rand.nextBoolean()) -1f else 1f
         direction.y = if (rand.nextBoolean()) -1f else 1f
         direction = direction.normalize()
+    }
+
+    override fun ready() {
+        player = getEntity("Player")
+        enemy = getEntity("Enemy")
     }
 
     override fun update() {
@@ -44,7 +48,7 @@ class Ball : Entity(AABB(800f/2 - 16f, 600f/2 - 16f, 32f, 32f), "Ball")
         super.update()
     }
 
-    fun reset()
+    private fun reset()
     {
         rect.x = 800f/2 - 16f
         rect.y = 800f/2 - 16f

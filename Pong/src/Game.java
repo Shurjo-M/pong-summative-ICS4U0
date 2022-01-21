@@ -1,9 +1,6 @@
 import input.EventManager;
 import input.KeyInput;
-import model.Ball;
-import model.Enemy;
-import model.Entity;
-import model.Player;
+import model.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -19,7 +16,7 @@ public class Game extends Canvas implements Runnable
     private Thread thread;
     private boolean isRunning = false;
     private final KeyInput keyInput;
-    public ArrayList<Entity> entities;
+    public EntityManager entities;
     EventManager eventManager;
 
     // Constructor
@@ -28,7 +25,7 @@ public class Game extends Canvas implements Runnable
         new Window(WIDTH, HEIGHT, title, this);
         keyInput = new KeyInput();
         this.addKeyListener(keyInput);
-        entities = new ArrayList<>();
+        entities = new EntityManager();
         eventManager = new EventManager();
         start();
     }
@@ -41,8 +38,10 @@ public class Game extends Canvas implements Runnable
         isRunning = true;
 
         entities.add(new Player());
-        entities.add(new Enemy());
         entities.add(new Ball());
+        entities.add(new Enemy());
+
+        entities.ready();
 
         // player controls
         eventManager.track(KeyEvent.VK_W);
@@ -130,10 +129,7 @@ public class Game extends Canvas implements Runnable
                 entity -> entity.input(eventManager)
         );
 
-        for (var e : entities)
-        {
-            e.update();
-        }
+        entities.update();
     }
 
     /**
@@ -157,10 +153,7 @@ public class Game extends Canvas implements Runnable
 
         g.setColor(Color.WHITE);
 
-        for (var e : entities)
-        {
-            g.fillRect((int) e.rect.x, (int) e.rect.y, (int) e.rect.w, (int) e.rect.h);
-        }
+        entities.render(g);
 
         bs.show();
         g.dispose();
