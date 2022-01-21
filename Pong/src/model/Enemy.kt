@@ -1,7 +1,7 @@
 package model
 
-import util.math.AABB
-import util.math.Vector2
+import util.AABB
+import util.Vector2
 
 class Enemy : Entity(AABB(800-64f, 600f/2 - 64, 16f, 128f), "Enemy")
 {

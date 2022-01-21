@@ -1,7 +1,7 @@
 package model
 
-import util.math.AABB
-import util.math.Vector2
+import util.AABB
+import util.Vector2
 import java.util.*
 
 class Ball : Entity(AABB(800f/2 - 16f, 600f/2 - 16f, 32f, 32f), "Ball")

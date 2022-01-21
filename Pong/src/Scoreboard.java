@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
-import util.fonts.*;
+
+import util.LoadFonts;
 
 public class Scoreboard extends JPanel
 {

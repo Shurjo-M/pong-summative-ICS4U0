@@ -1,8 +1,8 @@
 package model;
 
 import input.EventManager;
-import util.math.AABB;
-import util.math.Vector2;
+import util.AABB;
+import util.Vector2;
 
 import java.util.HashMap;
 

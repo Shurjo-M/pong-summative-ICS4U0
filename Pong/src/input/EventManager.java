@@ -3,7 +3,7 @@ package input;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
-import static util.math.Units.booltf;
+import static util.Units.booltf;
 
 public class EventManager
 {

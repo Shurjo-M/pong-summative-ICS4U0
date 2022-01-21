@@ -1,6 +1,7 @@
 package gui;
 
-import util.fonts.*;
+import util.LoadFonts;
+
 import javax.swing.*;
 import java.awt.*;
 

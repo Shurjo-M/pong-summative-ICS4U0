@@ -1,8 +1,9 @@
 package model
 
 import input.EventManager
-import util.math.AABB
-import util.math.Vector2
+import util.AABB
+import util.Vector2
+
 import java.awt.event.KeyEvent
 
 class Player : Entity(AABB(32f, 600f/2 - 64, 16f, 128f), "Player")
