@@ -1,11 +1,13 @@
 import input.EventManager;
 import input.KeyInput;
-import model.*;
+import model.Ball;
+import model.Enemy;
+import model.EntityManager;
+import model.Player;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
-import java.util.ArrayList;
 
 public class Game extends Canvas implements Runnable
 {

@@ -9,7 +9,7 @@ public class Scoreboard extends JPanel
     public static int playerScore;                  // Score of Player
     public static int enemyScore;                   // Score of Enemy CPU
     JLabel score;                                   // The score
-    Font blippoBold = LoadFonts.getBlippo()
+    Font blippoBold = LoadFonts.loadBlippo()
             .deriveFont(Font.BOLD, 24);         // The custom font for score
 
     public Scoreboard()

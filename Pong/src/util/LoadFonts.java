@@ -7,7 +7,7 @@ import java.io.IOException;
 public class LoadFonts {
     private static Font blippo;
 
-    public static void setBlippo()
+    public static Font loadBlippo()
     {
         try
         {
@@ -18,12 +18,12 @@ public class LoadFonts {
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
                     new File("assets/Blippo.ttf")));
 
-            blippo = blippo.deriveFont(Font.PLAIN, 24);
         } catch (IOException | FontFormatException e)
         {
             e.printStackTrace();
         }
 
+        return blippo;
     }
 
     public static Font getBlippo()

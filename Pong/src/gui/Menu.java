@@ -13,7 +13,7 @@ public class Menu extends JPanel
     final JButton quitGame = new JButton("QUIT GAME");
     final JPanel buttons = new JPanel();
     final JPanel titleP = new JPanel();
-    Font blippo = LoadFonts.getBlippo();
+    Font blippo = LoadFonts.loadBlippo();
 
     public Menu()
     {
