@@ -1,8 +1,8 @@
 import input.EventManager;
 import input.KeyInput;
+import model.Enemy;
 import model.Entity;
 import model.Player;
-import util.math.AABB;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Game extends Canvas implements Runnable
 {
     // Variable Declaration
-    public static int WIDTH = 800, HEIGHT = 608;
+    public static int WIDTH = 800, HEIGHT = 600;
     public String title = "Pong";
 
     private Thread thread;
@@ -39,14 +39,13 @@ public class Game extends Canvas implements Runnable
         thread = new Thread(this, "Game");
         isRunning = true;
 
-        Player player = new Player(new AABB(32, 32, 32, 32));
+        Player player = new Player();
         entities.add(player);
+        entities.add(new Enemy());
 
         // player controls
         eventManager.track(KeyEvent.VK_W);
-        eventManager.track(KeyEvent.VK_A);
         eventManager.track(KeyEvent.VK_S);
-        eventManager.track(KeyEvent.VK_D);
 
         // pause/play game
         eventManager.track(KeyEvent.VK_ESCAPE);
@@ -101,7 +100,7 @@ public class Game extends Canvas implements Runnable
                     eventManager.update(event);
                 }
 
-                tick(delta);
+                tick();
                 delta--;
             }
 
@@ -123,9 +122,8 @@ public class Game extends Canvas implements Runnable
 
     /**
      * private void tick
-     * @param dt  time elapsed
      */
-    private void tick(final double dt)
+    private void tick()
     {
         entities.forEach(
                 entity -> entity.input(eventManager)
@@ -155,10 +153,6 @@ public class Game extends Canvas implements Runnable
         g.setColor(Color.WHITE);
         entities.forEach(
             (entity -> g.fillRect((int) entity.rect.x, (int) entity.rect.y, (int) entity.rect.w, (int) entity.rect.h))
-        );
-
-        entities.forEach(
-                entity -> g.fillRect(0,0,32, 32)
         );
 
         bs.show();
