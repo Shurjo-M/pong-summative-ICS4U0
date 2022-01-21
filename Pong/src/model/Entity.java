@@ -25,7 +25,7 @@ public abstract class Entity
     public Entity(AABB rect)
     {
         this.rect = rect;
-        velocity = Vector2.getZERO();
+        velocity = new Vector2(0, 0);
         entityLookupTable.putIfAbsent(name, this);
     }
 
@@ -37,7 +37,7 @@ public abstract class Entity
     public Entity(AABB rect, String name)
     {
         this.rect = rect;
-        velocity = Vector2.getZERO();
+        velocity = new Vector2(0, 0);
         this.name = name;
         entityLookupTable.putIfAbsent(name, this);
     }
@@ -54,8 +54,8 @@ public abstract class Entity
      */
     public void update()
     {
-        rect.x += velocity.getX();
-        rect.y += velocity.getY();
+        this.rect.x += this.velocity.getX();
+        this.rect.y += this.velocity.getY();
     }
 
     public Entity getEntity(String name)
