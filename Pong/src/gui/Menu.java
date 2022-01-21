@@ -79,7 +79,8 @@ public class Menu extends JPanel
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args)
+    {
         Menu menu = new Menu();
 
         JFrame main = new JFrame();
