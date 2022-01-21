@@ -5,13 +5,10 @@ import util.math.AABB
 import util.math.Vector2
 import java.awt.event.KeyEvent
 
-class Player : Entity(AABB(32f, 32f, 16f, 128f), "Player")
+class Player : Entity(AABB(32f, 600f/2 - 64, 16f, 128f), "Player")
 {
-    var direction: Vector2 = Vector2.ZERO
+    var direction: Vector2 = Vector2(0f, 0f)
     private val speed = 12f
-
-    init {
-    }
 
     override fun input(manager: EventManager)
     {

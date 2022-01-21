@@ -1,20 +1,15 @@
 package util.math
 
+import kotlin.math.sqrt
+
 class Vector2(var x: Float, var y: Float)
 {
-
-    companion object
-    {
-        @JvmStatic
-        val ZERO = Vector2(0f, 0f)
-    }
-
     /**
      * Add two vectors
      * @param b Vector to add this with
      * @return the new vector
      */
-    fun plus(b: Vector2): Vector2
+    operator fun plus(b: Vector2): Vector2
     {
         return Vector2(this.x + b.x, this.y + b.y)
     }
@@ -24,7 +19,7 @@ class Vector2(var x: Float, var y: Float)
      * @param b Vector to add this with
      * @return the new vector
      */
-    fun minus(b: Vector2): Vector2
+    operator fun minus(b: Vector2): Vector2
     {
         return Vector2(this.x - b.x, this.y - b.y)
     }
@@ -32,7 +27,7 @@ class Vector2(var x: Float, var y: Float)
     /**
      * Negate this vector
      */
-    fun unaryMinus(): Vector2
+    operator fun unaryMinus(): Vector2
     {
         return Vector2(-x, -y)
     }
@@ -52,9 +47,19 @@ class Vector2(var x: Float, var y: Float)
      * @param a scalar to scale by
      * @return the new vector
      */
-    fun div(a: Float): Vector2
+    operator fun div(a: Float): Vector2
     {
         return Vector2(this.x / a, this.y / a)
+    }
+
+    fun length(): Float
+    {
+        return sqrt(x*x + y*y)
+    }
+
+    fun normalize(): Vector2
+    {
+        return (this / length())
     }
 
     /**
@@ -79,4 +84,6 @@ class Vector2(var x: Float, var y: Float)
         result = 31 * result + x.hashCode()
         return result
     }
+
+
 }

@@ -1,5 +1,6 @@
 import input.EventManager;
 import input.KeyInput;
+import model.Ball;
 import model.Enemy;
 import model.Entity;
 import model.Player;
@@ -39,9 +40,9 @@ public class Game extends Canvas implements Runnable
         thread = new Thread(this, "Game");
         isRunning = true;
 
-        Player player = new Player();
-        entities.add(player);
+        entities.add(new Player());
         entities.add(new Enemy());
+        entities.add(new Ball());
 
         // player controls
         eventManager.track(KeyEvent.VK_W);
@@ -128,7 +129,11 @@ public class Game extends Canvas implements Runnable
         entities.forEach(
                 entity -> entity.input(eventManager)
         );
-        entities.forEach(Entity::update);
+
+        for (var e : entities)
+        {
+            e.update();
+        }
     }
 
     /**
@@ -151,9 +156,11 @@ public class Game extends Canvas implements Runnable
         g.fillRect(0, 0, WIDTH, HEIGHT);
 
         g.setColor(Color.WHITE);
-        entities.forEach(
-            (entity -> g.fillRect((int) entity.rect.x, (int) entity.rect.y, (int) entity.rect.w, (int) entity.rect.h))
-        );
+
+        for (var e : entities)
+        {
+            g.fillRect((int) e.rect.x, (int) e.rect.y, (int) e.rect.w, (int) e.rect.h);
+        }
 
         bs.show();
         g.dispose();
