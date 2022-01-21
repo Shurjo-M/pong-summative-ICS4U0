@@ -101,7 +101,7 @@ public class Menu extends JPanel
 
         JFrame main = new JFrame();
         main.setContentPane(menu);
-        main.setTitle("Hangman");
+        main.setTitle("Pong");
         main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main.setSize(800, 600);
         main.setVisible(true);
