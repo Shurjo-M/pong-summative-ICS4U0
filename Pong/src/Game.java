@@ -18,11 +18,12 @@ public class Game extends Canvas implements Runnable
     private final KeyInput keyInput;
     public EntityManager entities;
     EventManager eventManager;
+    Scoreboard scoreboard = new Scoreboard();
 
     // Constructor
     public Game()
     {
-        new Window(WIDTH, HEIGHT, title, this);
+        new Window(WIDTH, HEIGHT, title, this, scoreboard);
         keyInput = new KeyInput();
         this.addKeyListener(keyInput);
         entities = new EntityManager();
@@ -154,6 +155,8 @@ public class Game extends Canvas implements Runnable
         g.setColor(Color.WHITE);
 
         entities.render(g);
+
+        // Updating the scoreboard
 
         bs.show();
         g.dispose();

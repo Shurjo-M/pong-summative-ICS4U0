@@ -1,9 +1,8 @@
 package gui;
 
+import util.fonts.*;
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 
 public class Menu extends JPanel
 {
@@ -13,7 +12,7 @@ public class Menu extends JPanel
     final JButton quitGame = new JButton("QUIT GAME");
     final JPanel buttons = new JPanel();
     final JPanel titleP = new JPanel();
-    Font blippo;
+    Font blippo = LoadFonts.getBlippo();
 
     public Menu()
     {
@@ -25,21 +24,6 @@ public class Menu extends JPanel
 
     private void layoutView()
     {
-        try
-        {
-            blippo = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("assets/Blippo.ttf"));
-
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
-                    new File("assets/Blippo.ttf")));
-
-            blippo = blippo.deriveFont(Font.PLAIN, 24);
-        } catch (IOException | FontFormatException e)
-        {
-            e.printStackTrace();
-        }
-
         // Title Panel
         titleP.setLayout(new FlowLayout());
         titleP.setBackground(Color.black);
@@ -60,7 +44,6 @@ public class Menu extends JPanel
         newGame.setAlignmentX(CENTER_ALIGNMENT);
         newGame.setBackground(Color.black);
         newGame.setForeground(Color.white);
-        newGame.setBorder(BorderFactory.createLineBorder(Color.white));
         newGame.setFont(this.blippo);
         buttons.add(this.newGame);
 
@@ -69,7 +52,6 @@ public class Menu extends JPanel
         quitGame.setAlignmentX(CENTER_ALIGNMENT);
         quitGame.setBackground(Color.black);
         quitGame.setForeground(Color.white);
-        quitGame.setBorder(BorderFactory.createLineBorder(Color.white));
         quitGame.setFont(this.blippo);
         buttons.add(this.quitGame);
 
