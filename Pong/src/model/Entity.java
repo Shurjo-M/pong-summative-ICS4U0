@@ -4,44 +4,42 @@ import input.EventManager;
 import util.math.AABB;
 import util.math.Vector2;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public abstract class Entity
 {
     public AABB rect;
     protected Vector2 velocity;
-    private String name;
-    private static final HashMap<String, Entity> manager;
+    protected String name;
+    private static final HashMap<String, Entity> entityLookupTable;
 
     static
     {
-        manager = new HashMap<>();
+        entityLookupTable = new HashMap<>();
     }
 
     /**
-     *
-     * @param rect
+     * A single anonymous entity within the game
+     * @param rect encodes the position, width and height of the entity
      */
     public Entity(AABB rect)
     {
         this.rect = rect;
         velocity = Vector2.getZERO();
-        this.name = name;
-        manager.putIfAbsent(name, this);
+        entityLookupTable.putIfAbsent(name, this);
     }
 
     /**
-     *
-     * @param rect
-     * @param name
+     * A single named entity within the game
+     * @param rect encodes the position, width and height of the entity
+     * @param name the name of the entity
      */
     public Entity(AABB rect, String name)
     {
         this.rect = rect;
         velocity = Vector2.getZERO();
         this.name = name;
-        manager.putIfAbsent(name, this);
+        entityLookupTable.putIfAbsent(name, this);
     }
 
     /**
@@ -62,6 +60,6 @@ public abstract class Entity
 
     public Entity getEntity(String name)
     {
-        return manager.getOrDefault(name, null);
+        return entityLookupTable.get(name);
     }
 }
