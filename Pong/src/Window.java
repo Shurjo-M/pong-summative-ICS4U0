@@ -3,6 +3,9 @@ import java.awt.*;
 
 public class Window
 {
+    private final Dimension scoreDimension;   // The dimensions of the scoreboard panel
+    private final Dimension gameDimension;    // The dimensions of the game panel
+
     public Window(int width, int height, String title, Game game, Scoreboard scoreboard)
     {
         JFrame frame = new JFrame(title);
@@ -18,5 +21,16 @@ public class Window
         frame.add(game, BorderLayout.CENTER);
         frame.add(scoreboard, BorderLayout.NORTH);
         frame.setVisible(true);
+
+        scoreDimension = scoreboard.getSize();
+        gameDimension = game.getSize();
+    }
+
+    public Dimension getGameDimension() {
+        return gameDimension;
+    }
+
+    public Dimension getScoreDimension() {
+        return scoreDimension;
     }
 }
