@@ -14,6 +14,7 @@ public class Game extends Canvas implements Runnable
     // Variable Declaration
     public static int WIDTH = 800, HEIGHT = 600;
     public String title = "Pong";
+    Window window;
 
     private Thread thread;
     private boolean isRunning = false;
@@ -25,7 +26,7 @@ public class Game extends Canvas implements Runnable
     // Constructor
     public Game()
     {
-
+        window = new Window(WIDTH, HEIGHT, title, this, scoreboard);
         keyInput = new KeyInput();
         this.addKeyListener(keyInput);
         entities = new EntityManager();

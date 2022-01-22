@@ -16,7 +16,6 @@ public class Menu extends JPanel
     final JPanel buttons = new JPanel();
     final JPanel titleP = new JPanel();
 
-    Window window;                                              // In game menu
     final JPanel inGamePanel = new JPanel();
     final JButton mainMenu = new JButton("MAIN MENU");
 
