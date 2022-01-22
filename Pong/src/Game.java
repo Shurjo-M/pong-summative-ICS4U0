@@ -25,7 +25,7 @@ public class Game extends Canvas implements Runnable
     // Constructor
     public Game()
     {
-        new Window(WIDTH, HEIGHT, title, this, scoreboard);
+
         keyInput = new KeyInput();
         this.addKeyListener(keyInput);
         entities = new EntityManager();

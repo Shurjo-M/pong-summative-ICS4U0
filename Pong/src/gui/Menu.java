@@ -7,20 +7,25 @@ import java.awt.*;
 
 public class Menu extends JPanel
 {
-    final JLabel title = new JLabel("PONG");
+    // Variable Declaration
+    Font blippo = LoadFonts.loadBlippo();                        // Font
+
+    final JLabel title = new JLabel("PONG");                // Initial Pong Layout
     final JButton newGame = new JButton("NEW GAME");
-    final JButton mainMenu = new JButton("MAIN MENU");
     final JButton quitGame = new JButton("QUIT GAME");
     final JPanel buttons = new JPanel();
     final JPanel titleP = new JPanel();
-    Font blippo = LoadFonts.loadBlippo();
+
+    Window window;                                              // In game menu
+    final JPanel inGamePanel = new JPanel();
+    final JButton mainMenu = new JButton("MAIN MENU");
 
     public Menu()
     {
         super();
         this.layoutView();
         this.registerControllers();
-        this.update();
+//        this.update();
     }
 
     private void layoutView()
@@ -29,8 +34,10 @@ public class Menu extends JPanel
         titleP.setLayout(new FlowLayout());
         titleP.setBackground(Color.black);
 
-        Font blippoBold = blippo.deriveFont(Font.BOLD, 32);
-        title.setFont(blippoBold);
+        titleP.add(Box.createRigidArea(new Dimension(0, 100)));
+
+        Font blippoTitle = blippo.deriveFont(Font.PLAIN, 64);
+        title.setFont(blippoTitle);
         title.setForeground(Color.white);
         titleP.add(this.title);
 
@@ -40,7 +47,7 @@ public class Menu extends JPanel
         buttons.setBackground(Color.black);
         buttons.setAlignmentX(CENTER_ALIGNMENT);
 
-        buttons.add(Box.createRigidArea(new Dimension(50, 600/3)));
+        buttons.add(Box.createRigidArea(new Dimension(50, 450/4)));
 
         newGame.setAlignmentX(CENTER_ALIGNMENT);
         newGame.setBackground(Color.black);
@@ -55,8 +62,6 @@ public class Menu extends JPanel
         quitGame.setForeground(Color.white);
         quitGame.setFont(this.blippo);
         buttons.add(this.quitGame);
-
-        buttons.setBorder(BorderFactory.createLineBorder(Color.white, 2));
 
         // Complete Layout
         this.setLayout(new BorderLayout());
@@ -76,17 +81,44 @@ public class Menu extends JPanel
 
     private void update()
     {
+        // Drawing in game menu
+        inGamePanel.setLayout(new BoxLayout(this.inGamePanel, BoxLayout.Y_AXIS));
+        inGamePanel.setBackground(Color.black);
+        inGamePanel.setAlignmentX(CENTER_ALIGNMENT);
 
+        inGamePanel.add(Box.createRigidArea(new Dimension(50, 600/3)));
+
+        mainMenu.setAlignmentX(CENTER_ALIGNMENT);
+        mainMenu.setBackground(Color.black);
+        mainMenu.setForeground(Color.white);
+        mainMenu.setFont(this.blippo);
+        inGamePanel.add(this.newGame);
+
+        buttons.add(Box.createRigidArea(new Dimension(50, 50)));
+
+        quitGame.setAlignmentX(CENTER_ALIGNMENT);
+        quitGame.setBackground(Color.black);
+        quitGame.setForeground(Color.white);
+        quitGame.setFont(this.blippo);
+        inGamePanel.add(this.quitGame);
+
+        inGamePanel.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+
+        // If esc is hit, open menu
+
+        // Other button inputs if needed
     }
 
     public static void main(String[] args){
+        JFrame frame = new JFrame();
         Menu menu = new Menu();
 
-        JFrame main = new JFrame();
-        main.setContentPane(menu);
-        main.setTitle("Pong");
-        main.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        main.setSize(800, 600);
-        main.setVisible(true);
+        frame.setSize(new Dimension(800, 600));
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.add(menu);
+        frame.setVisible(true);
     }
 }
