@@ -121,10 +121,8 @@ public class Game extends Canvas implements Runnable
         stop();
     }
 
-
-
     /**
-     * private void tick
+     * update the game
      */
     private void tick()
     {
@@ -136,7 +134,7 @@ public class Game extends Canvas implements Runnable
     }
 
     /**
-     * private void render
+     * draw things on the screen
      */
     private void render()
     {

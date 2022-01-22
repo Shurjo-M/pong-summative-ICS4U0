@@ -1,6 +1,6 @@
 package gui;
 
-import util.LoadFonts;
+import util.FontLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.*;
 public class Menu extends JPanel
 {
     // Variable Declaration
-    Font blippo = LoadFonts.loadBlippo();                        // Font
+    Font blippo = FontLoader.loadBlippo();                        // Font
 
     final JLabel title = new JLabel("PONG");                // Initial Pong Layout
     final JButton newGame = new JButton("NEW GAME");

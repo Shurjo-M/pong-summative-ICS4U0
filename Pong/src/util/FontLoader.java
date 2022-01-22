@@ -4,7 +4,8 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class LoadFonts {
+public class FontLoader
+{
     private static Font blippo;
 
     public static Font loadBlippo()

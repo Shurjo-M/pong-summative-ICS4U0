@@ -1,15 +1,15 @@
 import java.awt.*;
 import javax.swing.*;
 
-import util.LoadFonts;
+import util.FontLoader;
 
 public class Scoreboard extends JPanel
 {
     // Variable Declaration
-    public static int playerScore;                  // Score of Player
-    public static int enemyScore;                   // Score of Enemy CPU
-    JLabel score;                                   // The score
-    Font blippo = LoadFonts.loadBlippo();         // The custom font for score
+    public static int playerScore;          // Score of Player
+    public static int enemyScore;           // Score of Enemy CPU
+    JLabel score;                           // The score
+    Font blippo = FontLoader.loadBlippo();  // The custom font for score
 
     public Scoreboard()
     {

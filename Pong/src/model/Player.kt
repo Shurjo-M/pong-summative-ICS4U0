@@ -13,12 +13,10 @@ class Player : Entity(AABB(32f, 600f/2 - 64, 16f, 128f), "Player")
     private val speed = 12f
     private lateinit var window: Window
 
-
     override fun ready()
     {
         window = getEntity("Window") as Window
         println(window.rect)
-        super.ready()
     }
 
     override fun input(manager: EventManager)

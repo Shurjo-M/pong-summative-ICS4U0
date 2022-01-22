@@ -43,6 +43,6 @@ public class Window extends Entity
         rect.y = scoreDimension.height;
         // the width and height of the game canvas
         rect.w = gameDimension.width;
-        rect.h = gameDimension.width;
+        rect.h = gameDimension.height;
     }
 }
