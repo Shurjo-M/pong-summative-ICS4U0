@@ -6,8 +6,6 @@ import javax.swing.*;
 public class Scoreboard extends JPanel
 {
     // Variable Declaration
-    public static int playerScore;          // Score of Player
-    public static int enemyScore;           // Score of Enemy CPU
     JLabel score;                           // The score
     Font blippo = FontLoader.loadBlippo();  // The custom font for score
 
@@ -15,17 +13,14 @@ public class Scoreboard extends JPanel
     {
         super();
         this.initialLayout();
-        this.update(playerScore, enemyScore);
+        this.update(0, 0);
     }
 
     private void initialLayout()
     {
         // Default Score
-        playerScore = 0;
-        enemyScore = 0;
-
         // Drawing scoreboard
-        score = new JLabel(playerScore + ":" + enemyScore);
+        score = new JLabel();
         score.setBackground(Color.black);
         score.setForeground(Color.white);
 
@@ -37,7 +32,7 @@ public class Scoreboard extends JPanel
         this.setForeground(Color.white);
     }
 
-    private void update(int playerScore, int enemyScore)
+    public void update(int playerScore, int enemyScore)
     {
         // Drawing scoreboard
         score = new JLabel(playerScore + ":" + enemyScore);
@@ -51,7 +46,6 @@ public class Scoreboard extends JPanel
         this.setBackground(Color.black);
         this.setForeground(Color.white);
 
-        repaint();
         revalidate();
     }
 }

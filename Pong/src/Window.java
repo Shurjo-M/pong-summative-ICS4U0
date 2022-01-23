@@ -32,26 +32,22 @@ public class Window extends Entity
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
 
-        menu.registerControllers(new ButtonsController(frame, game));
+        var controller = new ButtonsController(
+                frame,
+                game,
+                menu,
+                scoreboard,
+                this
+        );
+        menu.registerControllers(controller);
         frame.add(menu, BorderLayout.CENTER);
         frame.setVisible(true);
 
-        // The dimensions of the scoreboard panel
-        Dimension scoreDimension = scoreboard.getSize();
-        // The dimensions of the game panel
-        Dimension gameDimension = game.getSize();
 
-        // assign to the window's rect
-        // no horizontal shifting of the game screen
-        rect.x = 0;
-        // the game screen starts below the scoreboard
-        rect.y = scoreDimension.height;
-        // the width and height of the game canvas
-        rect.w = gameDimension.width;
-        rect.h = gameDimension.height;
     }
 
-    public record ButtonsController(JFrame frame, Game game) implements ActionListener
+    public record ButtonsController(JFrame frame, Game game, Menu menu, Scoreboard scoreboard, Window window)
+            implements ActionListener
     {
         @Override
         public void actionPerformed(ActionEvent e)
@@ -60,10 +56,31 @@ public class Window extends Entity
             {
                 case "NEW GAME":
                     // Start field and make main menu screen disappear
-
+                    frame.remove(menu);
                     frame.add(game, BorderLayout.CENTER);
+                    frame.add(scoreboard, BorderLayout.NORTH);
                     frame.revalidate();
-                    frame.repaint();
+
+                    // The dimensions of the scoreboard panel
+                    Dimension scoreDimension = scoreboard.getSize();
+                    // The dimensions of the game panel
+                    Dimension gameDimension = game.getSize();
+
+                    // assign to the window's rect
+                    // no horizontal shifting of the game screen
+                    window.rect.x = 0;
+                    // the game screen starts below the scoreboard
+                    window.rect.y = scoreDimension.height;
+                    // the width and height of the game canvas
+                    window.rect.w = gameDimension.width;
+                    window.rect.h = gameDimension.height;
+
+                    System.out.println(window.rect.x);
+                    System.out.println(window.rect.y);
+                    System.out.println(window.rect.w);
+                    System.out.println(window.rect.h);
+
+                    game.start();
                     break;
                 case "MAIN MENU":
                     // Reset Field and run initial layout again

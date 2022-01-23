@@ -1,11 +1,12 @@
 package model
 
+import Scoreboard
 import Window
 import util.AABB
 import util.Vector2
 import java.util.*
 
-class Ball
+class Ball(var scoreboard: Scoreboard)
     : Entity(AABB(800f/2 - 16f, 600f/2 - 16f, 32f, 32f), "Ball")
 {
     private lateinit var player: Entity
@@ -49,9 +50,12 @@ class Ball
 
         if (rect.x <= 0 || rect.x >= window.rect.w)
         {
+            enemyScore += if (rect.x <= 0) 1 else 0
+            playerScore += if (rect.x >= window.rect.w) 1 else 0
             this.reset()
-            playerScore += if (rect.x <= 0) 1 else 0
-            enemyScore += if (rect.x >= window.rect.w) 1 else 0
+            println(playerScore)
+            println(enemyScore)
+            scoreboard.update(playerScore, enemyScore)
         }
 
         velocity = direction * speed

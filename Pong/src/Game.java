@@ -33,13 +33,11 @@ public class Game extends Canvas implements Runnable
         this.addKeyListener(keyInput);
         entities = new EntityManager();
         eventManager = new EventManager();
-
         // Shurjo make it do Game.start() after new game is pressed in the menu
         // OK
-
     }
 
-    private synchronized void start()
+    public synchronized void start()
     {
         if (isRunning) return;
 
@@ -47,7 +45,7 @@ public class Game extends Canvas implements Runnable
         isRunning = true;
 
         entities.add(new Player());
-        entities.add(new Ball());
+        entities.add(new Ball(scoreboard));
         entities.add(new Enemy());
 
         entities.ready();
