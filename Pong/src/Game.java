@@ -7,7 +7,10 @@ import model.EntityManager;
 import model.Player;
 import gui.MainMenu;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
@@ -34,6 +37,38 @@ public class Game extends Canvas implements Runnable
     }
     State state = State.RUNNING;
 
+    record PauseButtonsController()
+            implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            switch (((JButton) e.getSource()).getText())
+            {
+                case "NEW GAME":
+                    // Start field and make main menu screen disappear
+
+                    break;
+                case "CONTINUE GAME":
+                    // do thing
+
+                    break;
+                case "MAIN MENU":
+                    // Reset Field and run initial layout again
+
+                    break;
+                case "QUIT GAME":
+                    // Quit Game
+                    System.exit(0);
+                    break;
+                default:
+                    // how??
+                    // panic 2 electric boogaloo!
+                    break;
+            }
+        }
+    }
+
     // Constructor
     public Game()
     {
@@ -42,6 +77,10 @@ public class Game extends Canvas implements Runnable
         this.addKeyListener(keyInput);
         entities = new EntityManager();
         eventManager = new EventManager();
+        pauseMenu.registerControllers(new PauseButtonsController());
+
+
+
         // Shurjo make it do Game.start() after new game is pressed in the menu
         // OK
     }
@@ -178,4 +217,6 @@ public class Game extends Canvas implements Runnable
         bs.show();
         g.dispose();
     }
+
+
 }
