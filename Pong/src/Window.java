@@ -1,3 +1,4 @@
+import gui.Menu;
 import model.Entity;
 import util.AABB;
 
@@ -14,7 +15,7 @@ public class Window extends Entity
      * @param game Game instance
      * @param scoreboard ScoreBoard object for keeping score
      */
-    public Window(int width, int height, String title, Game game, Scoreboard scoreboard)
+    public Window(int width, int height, String title, Game game, Scoreboard scoreboard, Menu menu)
     {
         super(new AABB(0, 0, width, height), "Window");
         JFrame frame = new JFrame(title);
@@ -27,8 +28,7 @@ public class Window extends Entity
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.add(game, BorderLayout.CENTER);
-        frame.add(scoreboard, BorderLayout.NORTH);
+        frame.add(menu, BorderLayout.CENTER);
         frame.setVisible(true);
 
         // The dimensions of the scoreboard panel

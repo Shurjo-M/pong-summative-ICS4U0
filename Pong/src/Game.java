@@ -4,6 +4,7 @@ import model.Ball;
 import model.Enemy;
 import model.EntityManager;
 import model.Player;
+import gui.Menu;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -22,16 +23,18 @@ public class Game extends Canvas implements Runnable
     public EntityManager entities;
     EventManager eventManager;
     Scoreboard scoreboard = new Scoreboard();
+    Menu menu = new Menu();
 
     // Constructor
     public Game()
     {
-        window = new Window(WIDTH, HEIGHT, title, this, scoreboard);
+        window = new Window(WIDTH, HEIGHT, title, this, scoreboard, menu);
         keyInput = new KeyInput();
         this.addKeyListener(keyInput);
         entities = new EntityManager();
         eventManager = new EventManager();
-        start();
+
+        // Shurjo make it do Game.start() after new game is pressed in the menu
     }
 
     private synchronized void start()

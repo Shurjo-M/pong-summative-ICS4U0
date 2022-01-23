@@ -1,5 +1,4 @@
 package gui;
-
 import util.FontLoader;
 
 import javax.swing.*;
@@ -24,7 +23,6 @@ public class Menu extends JPanel
         super();
         this.layoutView();
         this.registerControllers();
-//        this.update();
     }
 
     private void layoutView()
@@ -33,7 +31,7 @@ public class Menu extends JPanel
         titleP.setLayout(new FlowLayout());
         titleP.setBackground(Color.black);
 
-        titleP.add(Box.createRigidArea(new Dimension(0, 100)));
+        titleP.add(Box.createRigidArea(new Dimension(0, Window.HEIGHT)));
 
         Font blippoTitle = blippo.deriveFont(Font.PLAIN, 64);
         title.setFont(blippoTitle);
@@ -46,7 +44,7 @@ public class Menu extends JPanel
         buttons.setBackground(Color.black);
         buttons.setAlignmentX(CENTER_ALIGNMENT);
 
-        buttons.add(Box.createRigidArea(new Dimension(50, 450/4)));
+        buttons.add(Box.createRigidArea(new Dimension(50, 600/4)));
 
         newGame.setAlignmentX(CENTER_ALIGNMENT);
         newGame.setBackground(Color.black);
@@ -80,12 +78,12 @@ public class Menu extends JPanel
 
     private void update()
     {
-        // Drawing in game menu
+        // Drawing in game menu when escape is hit when isRunning = true
         inGamePanel.setLayout(new BoxLayout(this.inGamePanel, BoxLayout.Y_AXIS));
         inGamePanel.setBackground(Color.black);
         inGamePanel.setAlignmentX(CENTER_ALIGNMENT);
 
-        inGamePanel.add(Box.createRigidArea(new Dimension(50, 600/3)));
+        inGamePanel.add(Box.createRigidArea(new Dimension(50, Window.HEIGHT/3)));
 
         mainMenu.setAlignmentX(CENTER_ALIGNMENT);
         mainMenu.setBackground(Color.black);
@@ -103,21 +101,6 @@ public class Menu extends JPanel
 
         inGamePanel.setBorder(BorderFactory.createLineBorder(Color.white, 2));
 
-        // If esc is hit, open menu
-
-        // Other button inputs if needed
-    }
-
-    public static void main(String[] args){
-        JFrame frame = new JFrame();
-        Menu menu = new Menu();
-
-        frame.setSize(new Dimension(800, 600));
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.add(menu);
-        frame.setVisible(true);
+        this.add(inGamePanel);
     }
 }

@@ -1,7 +1,7 @@
+import util.FontLoader;
+
 import java.awt.*;
 import javax.swing.*;
-
-import util.FontLoader;
 
 public class Scoreboard extends JPanel
 {
@@ -15,7 +15,7 @@ public class Scoreboard extends JPanel
     {
         super();
         this.initialLayout();
-        this.update();
+        this.update(playerScore, enemyScore);
     }
 
     private void initialLayout()
@@ -37,8 +37,21 @@ public class Scoreboard extends JPanel
         this.setForeground(Color.white);
     }
 
-    private void update()
+    private void update(int playerScore, int enemyScore)
     {
-        // Update scores and shit, dk if we need this tbh but i'll add it in case
+        // Drawing scoreboard
+        score = new JLabel(playerScore + ":" + enemyScore);
+        score.setBackground(Color.black);
+        score.setForeground(Color.white);
+
+        Font blippoBold = blippo.deriveFont(Font.BOLD, 32);
+        score.setFont(blippoBold);
+
+        this.add(score);
+        this.setBackground(Color.black);
+        this.setForeground(Color.white);
+
+        repaint();
+        revalidate();
     }
 }

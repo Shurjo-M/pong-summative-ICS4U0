@@ -13,11 +13,11 @@ public class FontLoader
         try
         {
             blippo = Font.createFont(Font.TRUETYPE_FONT,
-                    new File("assets/Blippo.ttf"));
+                    new File("Pong/assets/Blippo.ttf"));
 
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(Font.createFont(Font.TRUETYPE_FONT,
-                    new File("assets/Blippo.ttf")));
+                    new File("Pong/assets/Blippo.ttf")));
 
             blippo = blippo.deriveFont(Font.PLAIN, 24);
         } catch (IOException | FontFormatException e)
