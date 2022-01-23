@@ -35,6 +35,8 @@ public class Game extends Canvas implements Runnable
         eventManager = new EventManager();
 
         // Shurjo make it do Game.start() after new game is pressed in the menu
+        // OK
+
     }
 
     private synchronized void start()

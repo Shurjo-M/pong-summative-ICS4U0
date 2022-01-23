@@ -4,16 +4,19 @@ import util.AABB;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Window extends Entity
 {
     /**
      * An entity that represents the game window
-     * @param width width of the window
-     * @param height height of the window
-     * @param title window title
-     * @param game Game instance
+     * @param width      width of the window
+     * @param height     height of the window
+     * @param title      window title
+     * @param game       Game instance
      * @param scoreboard ScoreBoard object for keeping score
+     * @param menu       Main menu
      */
     public Window(int width, int height, String title, Game game, Scoreboard scoreboard, Menu menu)
     {
@@ -28,6 +31,8 @@ public class Window extends Entity
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+
+        menu.registerControllers(new ButtonsController(frame, game));
         frame.add(menu, BorderLayout.CENTER);
         frame.setVisible(true);
 
@@ -44,5 +49,35 @@ public class Window extends Entity
         // the width and height of the game canvas
         rect.w = gameDimension.width;
         rect.h = gameDimension.height;
+    }
+
+    public record ButtonsController(JFrame frame, Game game) implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            switch (((JButton) e.getSource()).getText())
+            {
+                case "NEW GAME":
+                    // Start field and make main menu screen disappear
+
+                    frame.add(game, BorderLayout.CENTER);
+                    frame.revalidate();
+                    frame.repaint();
+                    break;
+                case "MAIN MENU":
+                    // Reset Field and run initial layout again
+
+                    break;
+                case "QUIT GAME":
+                    // Quit Game
+                    System.exit(0);
+                    break;
+                default:
+                    // how??
+                    // panic 2 electric boogaloo!
+                    break;
+            }
+        }
     }
 }

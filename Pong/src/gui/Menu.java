@@ -3,6 +3,7 @@ import util.FontLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Menu extends JPanel
 {
@@ -22,7 +23,6 @@ public class Menu extends JPanel
     {
         super();
         this.layoutView();
-        this.registerControllers();
     }
 
     private void layoutView()
@@ -68,9 +68,8 @@ public class Menu extends JPanel
         this.add(this.buttons, BorderLayout.CENTER);
     }
 
-    private void registerControllers()
+    public void registerControllers(ActionListener controller)
     {
-        ButtonsController controller = new ButtonsController();
         this.newGame.addActionListener(controller);
         this.quitGame.addActionListener(controller);
         this.mainMenu.addActionListener(controller);
