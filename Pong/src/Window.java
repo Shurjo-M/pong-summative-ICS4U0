@@ -1,4 +1,4 @@
-import gui.Menu;
+import gui.MainMenu;
 import model.Entity;
 import util.AABB;
 
@@ -18,7 +18,7 @@ public class Window extends Entity
      * @param scoreboard ScoreBoard object for keeping score
      * @param menu       Main menu
      */
-    public Window(int width, int height, String title, Game game, Scoreboard scoreboard, Menu menu)
+    public Window(int width, int height, String title, Game game, Scoreboard scoreboard, MainMenu menu)
     {
         super(new AABB(0, 0, width, height), "Window");
         JFrame frame = new JFrame(title);
@@ -46,7 +46,17 @@ public class Window extends Entity
 
     }
 
-    public record ButtonsController(JFrame frame, Game game, Menu menu, Scoreboard scoreboard, Window window)
+    public void setScreen(JPanel panel)
+    {
+
+    }
+
+    public void setScreen(Canvas panel)
+    {
+
+    }
+
+    public record ButtonsController(JFrame frame, Game game, MainMenu menu, Scoreboard scoreboard, Window window)
             implements ActionListener
     {
         @Override

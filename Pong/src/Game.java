@@ -4,7 +4,7 @@ import model.Ball;
 import model.Enemy;
 import model.EntityManager;
 import model.Player;
-import gui.Menu;
+import gui.MainMenu;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -23,7 +23,7 @@ public class Game extends Canvas implements Runnable
     public EntityManager entities;
     EventManager eventManager;
     Scoreboard scoreboard = new Scoreboard();
-    Menu menu = new Menu();
+    MainMenu menu = new MainMenu();
 
     // Constructor
     public Game()
@@ -130,6 +130,11 @@ public class Game extends Canvas implements Runnable
      */
     private void tick()
     {
+        if (eventManager.getActionStrength(KeyEvent.VK_ESCAPE) > 0)
+        {
+            System.exit(0);
+        }
+
         entities.forEach(
                 entity -> entity.input(eventManager)
         );

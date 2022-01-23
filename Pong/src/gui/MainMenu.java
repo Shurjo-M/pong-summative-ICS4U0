@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class Menu extends JPanel
+public class MainMenu extends JPanel
 {
     // Variable Declaration
     Font blippo = FontLoader.loadBlippo();                        // Font
@@ -19,7 +19,7 @@ public class Menu extends JPanel
     final JPanel inGamePanel = new JPanel();
     final JButton mainMenu = new JButton("MAIN MENU");
 
-    public Menu()
+    public MainMenu()
     {
         super();
         this.layoutView();
@@ -37,7 +37,6 @@ public class Menu extends JPanel
         title.setFont(blippoTitle);
         title.setForeground(Color.white);
         titleP.add(this.title);
-
 
         // Buttons Panel
         buttons.setLayout(new BoxLayout(this.buttons, BoxLayout.Y_AXIS));
