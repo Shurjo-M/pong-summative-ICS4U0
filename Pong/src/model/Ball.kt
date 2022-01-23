@@ -30,8 +30,6 @@ class Ball(var scoreboard: Scoreboard)
         player = getEntity("Player")
         enemy = getEntity("Enemy")
         window = getEntity("Window") as Window
-        println(window.rect.w)
-        println(window.rect.h)
     }
 
     override fun update()

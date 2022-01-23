@@ -1,5 +1,7 @@
 package model;
 
+import input.EventManager;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -10,6 +12,14 @@ public class EntityManager extends ArrayList<Entity>
         for (Entity e : this)
         {
             e.ready();
+        }
+    }
+
+    public void input(EventManager manager)
+    {
+        for (Entity e : this)
+        {
+            e.input(manager);
         }
     }
 

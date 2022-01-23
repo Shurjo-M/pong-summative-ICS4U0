@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 
 public class Window extends Entity
 {
+    JFrame frame;
+
     /**
      * An entity that represents the game window
      * @param width      width of the window
@@ -21,7 +23,7 @@ public class Window extends Entity
     public Window(int width, int height, String title, Game game, Scoreboard scoreboard, MainMenu menu)
     {
         super(new AABB(0, 0, width, height), "Window");
-        JFrame frame = new JFrame(title);
+        this.frame = new JFrame(title);
 
         frame.setPreferredSize(new Dimension(width, height));
         frame.setMaximumSize(new Dimension(width, height));
@@ -46,14 +48,20 @@ public class Window extends Entity
 
     }
 
-    public void setScreen(JPanel panel)
+    public void setScreen(JPanel before, Canvas after)
     {
-
+        // make menu screen disappear
+        frame.remove(before);
+        frame.add(after, BorderLayout.CENTER);
+        frame.revalidate();
     }
 
-    public void setScreen(Canvas panel)
+    public void setScreen(Canvas before, JPanel after)
     {
-
+        // make game screen disappear
+        frame.remove(before);
+        frame.add(after, BorderLayout.CENTER);
+        frame.revalidate();
     }
 
     public record ButtonsController(JFrame frame, Game game, MainMenu menu, Scoreboard scoreboard, Window window)

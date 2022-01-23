@@ -1,3 +1,4 @@
+import gui.PauseMenu;
 import input.EventManager;
 import input.KeyInput;
 import model.Ball;
@@ -24,6 +25,14 @@ public class Game extends Canvas implements Runnable
     EventManager eventManager;
     Scoreboard scoreboard = new Scoreboard();
     MainMenu menu = new MainMenu();
+    PauseMenu pauseMenu = new PauseMenu();
+
+    public enum State
+    {
+        RUNNING,
+        PAUSED
+    }
+    State state = State.RUNNING;
 
     // Constructor
     public Game()
@@ -84,13 +93,14 @@ public class Game extends Canvas implements Runnable
         double amountOfTicks = 60.0;
         double ns = 1_000_000_000 / amountOfTicks;
         double delta = 0;
-        long timer = System.currentTimeMillis();
 
         // Loop to render and update game
         // This style of game loop was originally designed by Notch during the creation of minecraft
         // it updates the game 60 times a second and renders the game during each loop regardless of timing.
         while(isRunning)
         {
+
+
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
@@ -111,15 +121,15 @@ public class Game extends Canvas implements Runnable
                 delta--;
             }
 
+            if (state == State.PAUSED)
+            {
+                continue;
+            }
+
             // render the game to the screen
             // why is this called every frame? update is only called 60 times a second, so why is this even here?
             // changes to game state only happen in update, so why does moving this line break everything?
             render();
-
-            if(System.currentTimeMillis() - timer > 1000)
-            {
-                timer += 1000;
-            }
         }
 
         stop();
@@ -132,13 +142,13 @@ public class Game extends Canvas implements Runnable
     {
         if (eventManager.getActionStrength(KeyEvent.VK_ESCAPE) > 0)
         {
-            System.exit(0);
+            System.out.println("Game paused?");
+            state = State.PAUSED;
+
+            window.setScreen(this, pauseMenu);
         }
 
-        entities.forEach(
-                entity -> entity.input(eventManager)
-        );
-
+        entities.input(eventManager);
         entities.update();
     }
 
@@ -164,8 +174,6 @@ public class Game extends Canvas implements Runnable
         g.setColor(Color.WHITE);
 
         entities.render(g);
-
-        // Updating the scoreboard
 
         bs.show();
         g.dispose();
