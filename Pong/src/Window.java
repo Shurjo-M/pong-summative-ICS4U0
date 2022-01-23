@@ -75,11 +75,6 @@ public class Window extends Entity
                     window.rect.w = gameDimension.width;
                     window.rect.h = gameDimension.height;
 
-                    System.out.println(window.rect.x);
-                    System.out.println(window.rect.y);
-                    System.out.println(window.rect.w);
-                    System.out.println(window.rect.h);
-
                     game.start();
                     break;
                 case "MAIN MENU":

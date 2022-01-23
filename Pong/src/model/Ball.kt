@@ -53,8 +53,7 @@ class Ball(var scoreboard: Scoreboard)
             enemyScore += if (rect.x <= 0) 1 else 0
             playerScore += if (rect.x >= window.rect.w) 1 else 0
             this.reset()
-            println(playerScore)
-            println(enemyScore)
+
             scoreboard.update(playerScore, enemyScore)
         }
 

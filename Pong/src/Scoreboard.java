@@ -8,6 +8,7 @@ public class Scoreboard extends JPanel
     // Variable Declaration
     JLabel score;                           // The score
     Font blippo = FontLoader.loadBlippo();  // The custom font for score
+    Font blippoBold = blippo.deriveFont(Font.BOLD, 32);
 
     public Scoreboard()
     {
@@ -35,11 +36,11 @@ public class Scoreboard extends JPanel
     public void update(int playerScore, int enemyScore)
     {
         // Drawing scoreboard
+        this.remove(score);
+
         score = new JLabel(playerScore + ":" + enemyScore);
         score.setBackground(Color.black);
         score.setForeground(Color.white);
-
-        Font blippoBold = blippo.deriveFont(Font.BOLD, 32);
         score.setFont(blippoBold);
 
         this.add(score);
@@ -47,5 +48,6 @@ public class Scoreboard extends JPanel
         this.setForeground(Color.white);
 
         revalidate();
+        repaint();
     }
 }
