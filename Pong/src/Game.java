@@ -152,10 +152,6 @@ public class Game extends Canvas implements Runnable
             // update the game at 60hz.
             // ensure that any updates missed by lag are computed
             // (Is this the cause minecraft's lag spikes?)
-            if (state == State.PAUSED)
-            {
-                continue;
-            }
 
             while(delta >= 1)
             {
@@ -187,13 +183,16 @@ public class Game extends Canvas implements Runnable
         if (eventManager.getActionStrength(KeyEvent.VK_ESCAPE) > 0)
         {
             System.out.println("Game paused?");
-            state = State.PAUSED;
-
-            window.setScreen(this, pauseMenu);
+            if (state != State.PAUSED)
+                state = State.PAUSED;
+            else
+                state = State.RUNNING;
         }
 
         entities.input(eventManager);
-        entities.update();
+
+        if (!(state == State.PAUSED))
+            entities.update();
     }
 
     /**
