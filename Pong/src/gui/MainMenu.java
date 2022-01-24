@@ -16,7 +16,7 @@ public class MainMenu extends JPanel
     final JButton quitGame = new JButton("QUIT GAME");                      // Quit game button
     final JLabel winCondition = new JLabel("Get 5 points to win!");         // Win Condition label
     final JLabel controls = new JLabel("Use W and S to move.");             // Movement controls label
-    final JLabel pause = new JLabel("Press ESC to return to main menu.");   // Pause controls label
+    final JLabel pause = new JLabel("Press ESC to end the game.");          // Pause controls label
 
     final JPanel titleP = new JPanel();                                         // Title panel
     final JPanel buttons = new JPanel();                                        // Buttons panel

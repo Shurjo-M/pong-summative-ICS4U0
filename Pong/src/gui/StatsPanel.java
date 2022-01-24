@@ -165,6 +165,11 @@ public class StatsPanel extends JPanel {
         this.setBackground(Color.black);
         this.setForeground(Color.white);
 
+        mainMenu.setFont(blippo);
+        mainMenu.setBackground(Color.black);
+        mainMenu.setForeground(Color.white);
+        mainMenu.setAlignmentX(CENTER_ALIGNMENT);
+
         this.add(result, BorderLayout.NORTH);
         this.add(stats, BorderLayout.CENTER);
         this.add(mainMenu, BorderLayout.SOUTH);
