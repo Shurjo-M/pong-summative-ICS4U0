@@ -8,7 +8,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class Window extends Entity
 {
     JFrame frame;
@@ -37,12 +36,12 @@ public class Window extends Entity
         frame.setLocationRelativeTo(null);
 
         var controller = new ButtonsController(
-                        frame,
-                        game,
-                        menu,
-                        scoreboard,
+                frame,
+                game,
+                menu,
+                scoreboard,
                 this
-                );
+        );
         menu.registerControllers(controller);
         frame.add(menu, BorderLayout.CENTER);
         frame.setVisible(true);
@@ -54,15 +53,15 @@ public class Window extends Entity
     {
         // make menu screen disappear
         frame.remove(before);
-        frame.add(after, BorderLayout.CENTER);
+        frame.repaint();
         frame.revalidate();
     }
 
     public void setScreen(Canvas before, JPanel after)
     {
         // make game screen disappear
-        frame.remove(before);
         frame.add(after, BorderLayout.CENTER);
+        frame.repaint();
         frame.revalidate();
     }
 
@@ -79,6 +78,7 @@ public class Window extends Entity
                     frame.remove(menu);
                     frame.add(game, BorderLayout.CENTER);
                     frame.add(scoreboard, BorderLayout.NORTH);
+                    frame.repaint();
                     frame.revalidate();
 
                     // The dimensions of the scoreboard panel

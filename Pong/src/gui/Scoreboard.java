@@ -8,18 +8,17 @@ import javax.swing.*;
 public class Scoreboard extends JPanel
 {
     // Variable Declaration
-    JLabel score;                           // The score
-    Font blippo = FontLoader.loadBlippo();  // The custom font for score
-    Font blippoBold = blippo.deriveFont(Font.BOLD, 32);
+    JLabel score;                                               // The score
+    Font blippo = FontLoader.loadBlippo();                      // The custom font for score
 
     public Scoreboard()
     {
         super();
-        this.initialLayout();
+        this.layoutView();
         this.update(0, 0);
     }
 
-    private void initialLayout()
+    private void layoutView()
     {
         // Default Score
         // Drawing scoreboard
@@ -27,8 +26,7 @@ public class Scoreboard extends JPanel
         score.setBackground(Color.black);
         score.setForeground(Color.white);
 
-        Font blippoBold = blippo.deriveFont(Font.BOLD, 32);
-        score.setFont(blippoBold);
+        score.setFont(blippo.deriveFont(Font.BOLD, 32));
 
         this.add(score);
         this.setBackground(Color.black);
@@ -43,7 +41,7 @@ public class Scoreboard extends JPanel
         score = new JLabel(playerScore + ":" + enemyScore);
         score.setBackground(Color.black);
         score.setForeground(Color.white);
-        score.setFont(blippoBold);
+        score.setFont(blippo.deriveFont(Font.BOLD, 32));
 
         this.add(score);
         this.setBackground(Color.black);
