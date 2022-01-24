@@ -28,7 +28,7 @@ public class Game extends Canvas implements Runnable
     EventManager eventManager;
     Scoreboard scoreboard = new Scoreboard();
     MainMenu menu = new MainMenu();
-    StatsPanel stats = new StatsPanel();
+    StatsPanel stats;
     LinkedList<KeyEvent> keyEvents = keyInput.getKeyEvents();
 
     // Constructor
@@ -36,7 +36,7 @@ public class Game extends Canvas implements Runnable
     {
         window = new Window(WIDTH, HEIGHT, title, this, scoreboard, menu);
         this.addKeyListener(keyInput);
-        stats.registerControllers(e -> window.setScreen(stats, menu));
+
         // Shurjo make it do Game.start() after new game is pressed in the menu
         // OK
     }
@@ -50,8 +50,11 @@ public class Game extends Canvas implements Runnable
         isRunning = true;
 
         entities.add(new Player());
-        entities.add(new Ball(scoreboard));
+        var t = new Ball(scoreboard);
+        entities.add(t);
         entities.add(new Enemy());
+        stats = new StatsPanel(t);
+        stats.registerControllers(e -> window.setScreen(stats, menu));
 
         entities.ready();
 

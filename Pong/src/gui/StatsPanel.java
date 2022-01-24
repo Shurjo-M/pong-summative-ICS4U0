@@ -7,29 +7,33 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class StatsPanel extends JPanel {
+public class StatsPanel extends JPanel
+{
     // Variable Declaration
     Font blippo = FontLoader.loadBlippo();                             // Blippo font
-    int enemyScore = Ball.enemyScore;                                  // Number of enemy goals
-    int playerScore = Ball.playerScore;                                // Number of player scores
+    int enemyScore = 0;                                  // Number of enemy goals
+    int playerScore = 0;                                // Number of player scores
     JLabel result;                                                     // Results Label
     JLabel playerStats;                                                // Player score stats
     JLabel enemyStats;                                                 // Enemy score stats
     final JButton mainMenu = new JButton("RETURN TO MAIN MENU");  // Main Menu Button
+    final Ball ball;
 
     final JPanel stats = new JPanel();
 
-    public StatsPanel()
+    public StatsPanel(Ball ball)
     {
         super();
+        this.ball = ball;
+
         layoutView();
     }
 
     private void layoutView()
     {
         // Stats Panel
-        playerScore = Ball.playerScore;
-        enemyScore = Ball.enemyScore;
+        playerScore = ball.getPlayerScore();
+        enemyScore = ball.getEnemyScore();
         if (playerScore < 3)
         {
             result = new JLabel("You failed to win! Too bad...");
