@@ -1,4 +1,5 @@
 import gui.PauseMenu;
+import gui.Scoreboard;
 import input.EventManager;
 import input.KeyInput;
 import model.Ball;

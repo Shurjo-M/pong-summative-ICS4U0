@@ -32,7 +32,7 @@ class Player : Entity(AABB(32f, 600f/2 - 64, 16f, 128f), "Player")
             rect.y = window.rect.h - rect.h
         }
 
-        velocity = direction * speed
+        velocity = direction.scale(speed)
         super.update()
     }
 }

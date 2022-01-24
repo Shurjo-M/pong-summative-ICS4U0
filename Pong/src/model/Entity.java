@@ -59,8 +59,8 @@ public abstract class Entity
      */
     public void update()
     {
-        this.rect.x += this.velocity.getX();
-        this.rect.y += this.velocity.getY();
+        this.rect.x += this.velocity.x;
+        this.rect.y += this.velocity.y;
     }
 
     public Entity getEntity(String name)

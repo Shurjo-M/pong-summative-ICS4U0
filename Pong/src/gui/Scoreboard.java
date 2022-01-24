@@ -1,3 +1,5 @@
+package gui;
+
 import util.FontLoader;
 
 import java.awt.*;

@@ -1,4 +1,5 @@
 import gui.MainMenu;
+import gui.Scoreboard;
 import model.Entity;
 import util.AABB;
 
