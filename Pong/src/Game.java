@@ -8,7 +8,6 @@ import model.Enemy;
 import model.EntityManager;
 import model.Player;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
