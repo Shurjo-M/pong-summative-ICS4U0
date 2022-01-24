@@ -9,7 +9,7 @@ public class Enemy extends Entity
     Vector2 direction = new Vector2(0f, 0f);
 
     private Entity ball;
-    private  Entity window;
+    private Entity window;
     private final Random random = new Random();
 
     public Enemy()
@@ -23,7 +23,6 @@ public class Enemy extends Entity
         window = getEntity("Window");
 
         rect.x = window.rect.w - 64;
-
     }
 
     public void update()
