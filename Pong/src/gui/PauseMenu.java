@@ -78,7 +78,7 @@ public class PauseMenu extends JPanel
         this.newGame.addActionListener(controller);
         this.quitGame.addActionListener(controller);
         this.mainMenu.addActionListener(controller);
-        KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
+        this.continueGame.addActionListener(controller);
     }
 
     private void update()

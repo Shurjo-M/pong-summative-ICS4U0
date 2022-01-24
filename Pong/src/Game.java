@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
+import java.util.LinkedList;
 
 public class Game extends Canvas implements Runnable
 {
@@ -23,12 +24,13 @@ public class Game extends Canvas implements Runnable
 
     private Thread thread;
     private boolean isRunning = false;
-    private final KeyInput keyInput;
+    private final KeyInput keyInput = new KeyInput();
     public EntityManager entities;
     EventManager eventManager;
     Scoreboard scoreboard = new Scoreboard();
     MainMenu menu = new MainMenu();
     PauseMenu pauseMenu = new PauseMenu();
+    LinkedList<KeyEvent> keyEvents = keyInput.getKeyEvents();
 
     public enum State
     {
@@ -37,7 +39,7 @@ public class Game extends Canvas implements Runnable
     }
     State state = State.RUNNING;
 
-    record PauseButtonsController()
+    record PauseButtonsController(Window window, Game game, PauseMenu pauseMenu)
             implements ActionListener
     {
         @Override
@@ -52,6 +54,17 @@ public class Game extends Canvas implements Runnable
                 case "CONTINUE GAME":
                     // do thing
 
+                    System.out.println("???");
+                    game.state = State.RUNNING;
+
+                    KeyEvent event;
+                    while ((event = game.keyEvents.pollFirst()) != null)
+                    {
+                        game.eventManager.update(event);
+                    }
+
+                    window.setScreen(pauseMenu, game);
+                    game.render();
                     break;
                 case "MAIN MENU":
                     // Reset Field and run initial layout again
@@ -73,13 +86,10 @@ public class Game extends Canvas implements Runnable
     public Game()
     {
         window = new Window(WIDTH, HEIGHT, title, this, scoreboard, menu);
-        keyInput = new KeyInput();
         this.addKeyListener(keyInput);
         entities = new EntityManager();
         eventManager = new EventManager();
-        pauseMenu.registerControllers(new PauseButtonsController());
-
-
+        pauseMenu.registerControllers(new PauseButtonsController(window, this, pauseMenu));
 
         // Shurjo make it do Game.start() after new game is pressed in the menu
         // OK
@@ -143,11 +153,16 @@ public class Game extends Canvas implements Runnable
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            var keyEvents = keyInput.getKeyEvents();
+
 
             // update the game at 60hz.
             // ensure that any updates missed by lag are computed
             // (Is this the cause minecraft's lag spikes?)
+            if (state == State.PAUSED)
+            {
+                continue;
+            }
+
             while(delta >= 1)
             {
                 KeyEvent event;
@@ -160,15 +175,11 @@ public class Game extends Canvas implements Runnable
                 delta--;
             }
 
-            if (state == State.PAUSED)
-            {
-                continue;
-            }
-
             // render the game to the screen
             // why is this called every frame? update is only called 60 times a second, so why is this even here?
             // changes to game state only happen in update, so why does moving this line break everything?
-            render();
+            if (state == State.RUNNING)
+                render();
         }
 
         stop();
