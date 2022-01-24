@@ -85,10 +85,6 @@ public class Game extends Canvas implements Runnable
     {
         window = new Window(WIDTH, HEIGHT, title, this, scoreboard, menu);
         this.addKeyListener(keyInput);
-        entities = new EntityManager();
-        eventManager = new EventManager();
-        pauseMenu.registerControllers(new PauseButtonsController(window, this, pauseMenu));
-
         // Shurjo make it do Game.start() after new game is pressed in the menu
         // OK
     }
@@ -96,6 +92,9 @@ public class Game extends Canvas implements Runnable
     public synchronized void start()
     {
         if (isRunning) return;
+
+        entities = new EntityManager();
+        eventManager = new EventManager();
 
         thread = new Thread(this, "Game");
         isRunning = true;
@@ -129,10 +128,12 @@ public class Game extends Canvas implements Runnable
             e.printStackTrace();
         }
         isRunning = false;
+
     }
 
     // Game Loop
-    public void run() {
+    public void run()
+    {
         this.requestFocus();
 
         // Variable Declaration
@@ -166,13 +167,17 @@ public class Game extends Canvas implements Runnable
                 delta--;
             }
 
+            if (eventManager.getActionStrength(KeyEvent.VK_ESCAPE) > 0)
+            {
+                window.setScreen(this, menu);
+            }
+
             // render the game to the screen
             // why is this called every frame? update is only called 60 times a second, so why is this even here?
             // changes to game state only happen in update, so why does moving this line break everything?
             if (state == State.RUNNING)
                 render();
         }
-
         stop();
     }
 
@@ -181,15 +186,6 @@ public class Game extends Canvas implements Runnable
      */
     private void tick()
     {
-        if (eventManager.getActionStrength(KeyEvent.VK_ESCAPE) > 0)
-        {
-            System.out.println("Game paused?");
-            if (state != State.PAUSED)
-                state = State.PAUSED;
-            else
-                state = State.RUNNING;
-        }
-
         entities.input(eventManager);
 
         if (!(state == State.PAUSED))
