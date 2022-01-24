@@ -5,7 +5,7 @@ import util.AABB;
 import util.Vector2;
 import java.awt.event.KeyEvent;
 
-class Player extends Entity
+public class Player extends Entity
 {
     private final Vector2 direction = new Vector2(0f, 0f);
     private Entity window;
