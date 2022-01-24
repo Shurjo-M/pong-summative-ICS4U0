@@ -8,7 +8,7 @@ import java.util.*
 class Enemy : Entity(AABB(800-64f, 600f/2 - 64, 16f, 128f), "Enemy")
 {
     var direction: Vector2 = Vector2(0f, 0f)
-    private val speed = 12f
+    private val speed = 7f
     private lateinit var ball: Ball
     private lateinit var window: Window
     private val random = Random()
