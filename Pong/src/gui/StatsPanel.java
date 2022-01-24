@@ -9,14 +9,13 @@ import java.awt.event.ActionListener;
 
 public class StatsPanel extends JPanel {
     // Variable Declaration
-    Font blippo = FontLoader.loadBlippo();                                  // Blippo font
-    int enemyScore = Ball.enemyScore;                                       // Number of enemy goals
-    int playerScore = Ball.playerScore;                                     // Number of player scores
-
-    JLabel result;                                                          // Results Label
-    JLabel playerStats;                                                     // Player score stats
-    JLabel enemyStats;                                                      // Enemy score stats
-    final JButton mainMenu = new JButton("RETURN TO MAIN MENU");        // Main Menu Button
+    Font blippo = FontLoader.loadBlippo();                             // Blippo font
+    int enemyScore = Ball.enemyScore;                                  // Number of enemy goals
+    int playerScore = Ball.playerScore;                                // Number of player scores
+    JLabel result;                                                     // Results Label
+    JLabel playerStats;                                                // Player score stats
+    JLabel enemyStats;                                                 // Enemy score stats
+    final JButton mainMenu = new JButton("RETURN TO MAIN MENU");  // Main Menu Button
 
     final JPanel stats = new JPanel();
 
@@ -170,7 +169,6 @@ public class StatsPanel extends JPanel {
         this.add(stats, BorderLayout.CENTER);
         this.add(mainMenu, BorderLayout.SOUTH);
     }
-
 
     private void registerControllers(ActionListener controller)
     {

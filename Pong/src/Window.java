@@ -49,10 +49,11 @@ public class Window extends Entity
 
     }
 
-    public void setScreen(JPanel before, Canvas after)
+    public void setScreen(JPanel before, JPanel after)
     {
         // make menu screen disappear
         frame.remove(before);
+        frame.add(after);
         frame.repaint();
         frame.revalidate();
     }

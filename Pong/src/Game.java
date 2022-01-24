@@ -1,17 +1,14 @@
-import gui.PauseMenu;
+import gui.MainMenu;
 import gui.Scoreboard;
+import gui.StatsPanel;
 import input.EventManager;
 import input.KeyInput;
 import model.Ball;
 import model.Enemy;
 import model.EntityManager;
 import model.Player;
-import gui.MainMenu;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 import java.util.LinkedList;
@@ -30,7 +27,7 @@ public class Game extends Canvas implements Runnable
     EventManager eventManager;
     Scoreboard scoreboard = new Scoreboard();
     MainMenu menu = new MainMenu();
-    PauseMenu pauseMenu = new PauseMenu();
+    StatsPanel stats = new StatsPanel();
     LinkedList<KeyEvent> keyEvents = keyInput.getKeyEvents();
 
     public enum State
@@ -39,46 +36,6 @@ public class Game extends Canvas implements Runnable
         PAUSED
     }
     State state = State.RUNNING;
-
-    record PauseButtonsController(Window window, Game game, PauseMenu pauseMenu)
-            implements ActionListener
-    {
-        @Override
-        public void actionPerformed(ActionEvent e)
-        {
-            switch (((JButton) e.getSource()).getText())
-            {
-                case "NEW GAME":
-                    // Start field and make main menu screen disappear
-
-                    break;
-                case "CONTINUE GAME":
-                    // do thing
-
-                    System.out.println("Un-pause");
-                    game.state = State.RUNNING;
-
-                    game.keyEvents.clear();
-                    game.eventManager.flush();
-
-                    window.setScreen(pauseMenu, game);
-                    game.run();
-                    break;
-                case "MAIN MENU":
-                    // Reset Field and run initial layout again
-
-                    break;
-                case "QUIT GAME":
-                    // Quit Game
-                    System.exit(0);
-                    break;
-                default:
-                    // how??
-                    // panic 2 electric boogaloo!
-                    break;
-            }
-        }
-    }
 
     // Constructor
     public Game()
@@ -169,7 +126,7 @@ public class Game extends Canvas implements Runnable
 
             if (eventManager.getActionStrength(KeyEvent.VK_ESCAPE) > 0)
             {
-                window.setScreen(this, menu);
+                window.setScreen(this, stats);
             }
 
             // render the game to the screen
@@ -218,6 +175,4 @@ public class Game extends Canvas implements Runnable
         bs.show();
         g.dispose();
     }
-
-
 }
