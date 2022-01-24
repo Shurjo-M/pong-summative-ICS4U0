@@ -98,16 +98,7 @@ public class Game extends Canvas implements Runnable
     {
         if(!isRunning) return;
 
-        try
-        {
-            thread.join();
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
         isRunning = false;
-
     }
 
     // Game Loop
@@ -149,12 +140,13 @@ public class Game extends Canvas implements Runnable
             if (eventManager.getActionStrength(KeyEvent.VK_ESCAPE) > 0)
             {
                 window.setScreen(this, stats);
-                break;
+                stop();
             }
 
             // render the game to the screen
             // why is this called every frame? update is only called 60 times a second, so why is this even here?
             // changes to game state only happen in update, so why does moving this line break everything?
+            if (!isRunning) return;
             render();
         }
         stop();

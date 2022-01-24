@@ -38,7 +38,6 @@ public class Enemy extends Entity
         }
 
         direction = direction.normalize();
-        //velocity = direction * speed
 
         if (rect.y <= 0)
         {
@@ -49,11 +48,9 @@ public class Enemy extends Entity
             rect.y = window.rect.h - rect.h;
         }
 
-        if (random.nextBoolean())
-        {
-            float speed = 7f;
-            velocity = direction.scale(speed);
-        }
+        float speed = 7f;
+        velocity = direction.scale(speed);
+
         super.update();
     }
 }
