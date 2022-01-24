@@ -30,18 +30,16 @@ public class Game extends Canvas implements Runnable
     StatsPanel stats = new StatsPanel();
     LinkedList<KeyEvent> keyEvents = keyInput.getKeyEvents();
 
-    public enum State
-    {
-        RUNNING,
-        PAUSED
-    }
-    State state = State.RUNNING;
-
     // Constructor
     public Game()
     {
         window = new Window(WIDTH, HEIGHT, title, this, scoreboard, menu);
         this.addKeyListener(keyInput);
+        stats.registerControllers(
+                e -> {
+
+                }
+        );
         // Shurjo make it do Game.start() after new game is pressed in the menu
         // OK
     }
@@ -127,13 +125,13 @@ public class Game extends Canvas implements Runnable
             if (eventManager.getActionStrength(KeyEvent.VK_ESCAPE) > 0)
             {
                 window.setScreen(this, stats);
+                continue;
             }
 
             // render the game to the screen
             // why is this called every frame? update is only called 60 times a second, so why is this even here?
             // changes to game state only happen in update, so why does moving this line break everything?
-            if (state == State.RUNNING)
-                render();
+            render();
         }
         stop();
     }
@@ -145,8 +143,7 @@ public class Game extends Canvas implements Runnable
     {
         entities.input(eventManager);
 
-        if (!(state == State.PAUSED))
-            entities.update();
+        entities.update();
     }
 
     /**
@@ -156,7 +153,7 @@ public class Game extends Canvas implements Runnable
     {
         BufferStrategy bs = this.getBufferStrategy();
 
-        if(bs == null)
+        if (bs == null)
         {
             this.createBufferStrategy(2);
             return;

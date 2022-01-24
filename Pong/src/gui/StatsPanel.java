@@ -175,7 +175,7 @@ public class StatsPanel extends JPanel {
         this.add(mainMenu, BorderLayout.SOUTH);
     }
 
-    private void registerControllers(ActionListener controller)
+    public void registerControllers(ActionListener controller)
     {
         this.mainMenu.addActionListener(controller);
     }
