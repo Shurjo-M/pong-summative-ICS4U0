@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class Window extends Entity
 {
     JFrame frame;
@@ -35,12 +36,12 @@ public class Window extends Entity
         frame.setLocationRelativeTo(null);
 
         var controller = new ButtonsController(
-                frame,
-                game,
-                menu,
-                scoreboard,
+                        frame,
+                        game,
+                        menu,
+                        scoreboard,
                 this
-        );
+                );
         menu.registerControllers(controller);
         frame.add(menu, BorderLayout.CENTER);
         frame.setVisible(true);

@@ -73,32 +73,4 @@ public class MainMenu extends JPanel
         this.quitGame.addActionListener(controller);
         this.mainMenu.addActionListener(controller);
     }
-
-    private void update()
-    {
-        // Drawing in game menu when escape is hit when isRunning = true
-        inGamePanel.setLayout(new BoxLayout(this.inGamePanel, BoxLayout.Y_AXIS));
-        inGamePanel.setBackground(Color.black);
-        inGamePanel.setAlignmentX(CENTER_ALIGNMENT);
-
-        inGamePanel.add(Box.createRigidArea(new Dimension(50, Window.HEIGHT/3)));
-
-        mainMenu.setAlignmentX(CENTER_ALIGNMENT);
-        mainMenu.setBackground(Color.black);
-        mainMenu.setForeground(Color.white);
-        mainMenu.setFont(this.blippo);
-        inGamePanel.add(this.newGame);
-
-        buttons.add(Box.createRigidArea(new Dimension(50, 50)));
-
-        quitGame.setAlignmentX(CENTER_ALIGNMENT);
-        quitGame.setBackground(Color.black);
-        quitGame.setForeground(Color.white);
-        quitGame.setFont(this.blippo);
-        inGamePanel.add(this.quitGame);
-
-        inGamePanel.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-
-        this.add(inGamePanel);
-    }
 }
