@@ -54,17 +54,14 @@ public class Game extends Canvas implements Runnable
                 case "CONTINUE GAME":
                     // do thing
 
-                    System.out.println("???");
+                    System.out.println("Un-pause");
                     game.state = State.RUNNING;
 
-                    KeyEvent event;
-                    while ((event = game.keyEvents.pollFirst()) != null)
-                    {
-                        game.eventManager.update(event);
-                    }
+                    game.keyEvents.clear();
+                    game.eventManager.flush();
 
                     window.setScreen(pauseMenu, game);
-                    game.render();
+                    game.run();
                     break;
                 case "MAIN MENU":
                     // Reset Field and run initial layout again
@@ -148,12 +145,9 @@ public class Game extends Canvas implements Runnable
         // it updates the game 60 times a second and renders the game during each loop regardless of timing.
         while(isRunning)
         {
-
-
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-
 
             // update the game at 60hz.
             // ensure that any updates missed by lag are computed

@@ -32,4 +32,12 @@ public class EventManager
     {
         actions.putIfAbsent(event, 0f);
     }
+
+    public void flush()
+    {
+        for (var key : actions.keySet())
+        {
+            actions.replace(key, 0f);
+        }
+    }
 }
