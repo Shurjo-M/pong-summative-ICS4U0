@@ -13,8 +13,8 @@ public class Ball extends Entity
     Vector2 direction = new Vector2(0f, 0f);
     Random rand = new Random();
     private Entity window;
-    int playerScore = 0;
-    int enemyScore = 0;
+    public static int playerScore = 0;
+    public static int enemyScore = 0;
     Scoreboard scoreboard;
 
     public Ball(Scoreboard scoreboard)

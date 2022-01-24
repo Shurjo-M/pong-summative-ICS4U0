@@ -14,9 +14,9 @@ public class MainMenu extends JPanel
     final JLabel title = new JLabel("PONG BUT IT'S REALLY HARD");           // Initial Pong Layout
     final JButton newGame = new JButton("NEW GAME");                        // New game button
     final JButton quitGame = new JButton("QUIT GAME");                      // Quit game button
-    final JLabel winCondition = new JLabel("Get 3 points to win!");         // Win Condition label
-    final JLabel controls = new JLabel("Use W and A to move.");             // Movement controls label
-    final JLabel pause = new JLabel("Press ESC to pause.");                 // Pause controls label
+    final JLabel winCondition = new JLabel("Get 5 points to win!");         // Win Condition label
+    final JLabel controls = new JLabel("Use W and S to move.");             // Movement controls label
+    final JLabel pause = new JLabel("Press ESC to return to main menu.");   // Pause controls label
 
     final JPanel titleP = new JPanel();                                         // Title panel
     final JPanel buttons = new JPanel();                                        // Buttons panel
