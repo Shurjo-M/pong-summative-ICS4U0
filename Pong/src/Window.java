@@ -60,8 +60,8 @@ public class Window extends Entity
     public void setScreen(Canvas before, JPanel after)
     {
         // make game screen disappear
+        frame.remove(before);
         frame.add(after, BorderLayout.CENTER);
-        frame.repaint();
         frame.revalidate();
     }
 
