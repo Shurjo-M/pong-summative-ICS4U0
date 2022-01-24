@@ -28,6 +28,8 @@ public class StatsPanel extends JPanel {
     private void layoutView()
     {
         // Stats Panel
+        playerScore = Ball.playerScore;
+        enemyScore = Ball.enemyScore;
         if (playerScore < 3)
         {
             result = new JLabel("You failed to win! Too bad...");
