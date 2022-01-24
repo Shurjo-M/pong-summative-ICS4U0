@@ -66,6 +66,14 @@ public class Window extends Entity
         frame.revalidate();
     }
 
+    public void setScreen(JPanel before, Canvas after)
+    {
+        // make game screen disappear
+        frame.remove(before);
+        frame.add(after, BorderLayout.CENTER);
+        frame.revalidate();
+    }
+
     public record ButtonsController(JFrame frame, Game game, MainMenu menu, Scoreboard scoreboard, Window window)
             implements ActionListener
     {

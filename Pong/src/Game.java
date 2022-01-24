@@ -8,6 +8,7 @@ import model.Enemy;
 import model.EntityManager;
 import model.Player;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
@@ -35,18 +36,41 @@ public class Game extends Canvas implements Runnable
     {
         window = new Window(WIDTH, HEIGHT, title, this, scoreboard, menu);
         this.addKeyListener(keyInput);
-        stats.registerControllers(
-                e -> {
-
-                }
-        );
+        stats.registerControllers(e -> window.setScreen(stats, menu));
         // Shurjo make it do Game.start() after new game is pressed in the menu
         // OK
     }
 
+    public void reset()
+    {
+        System.out.println("This nightmare over here!");
+        entities = new EntityManager();
+        eventManager = new EventManager();
+
+        isRunning = true;
+
+        entities.add(new Player());
+        entities.add(new Ball(scoreboard));
+        entities.add(new Enemy());
+
+        entities.ready();
+
+        // player controls
+        eventManager.track(KeyEvent.VK_W);
+        eventManager.track(KeyEvent.VK_S);
+
+        // pause/play game
+        eventManager.track(KeyEvent.VK_ESCAPE);
+
+        window.setScreen(menu, this);
+    }
+
     public synchronized void start()
     {
-        if (isRunning) return;
+        if (isRunning)
+            return;
+        else
+            reset();
 
         entities = new EntityManager();
         eventManager = new EventManager();
@@ -125,7 +149,7 @@ public class Game extends Canvas implements Runnable
             if (eventManager.getActionStrength(KeyEvent.VK_ESCAPE) > 0)
             {
                 window.setScreen(this, stats);
-                continue;
+                break;
             }
 
             // render the game to the screen
