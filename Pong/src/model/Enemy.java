@@ -10,7 +10,6 @@ public class Enemy extends Entity
 
     private Entity ball;
     private Entity window;
-    private final Random random = new Random();
 
     public Enemy()
     {
@@ -27,17 +26,7 @@ public class Enemy extends Entity
 
     public void update()
     {
-
-        if (rect.y + rect.h/2 > ball.rect.y)
-        {
-            direction.y = -1f;
-        }
-        if (rect.y + rect.h/2 < ball.rect.y)
-        {
-            direction.y = 1f;
-        }
-
-        direction = direction.normalize();
+        direction.y = -1f;
 
         if (rect.y <= 0)
         {
