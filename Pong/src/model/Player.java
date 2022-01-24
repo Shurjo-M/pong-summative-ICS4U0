@@ -31,6 +31,7 @@ public class Player extends Entity
         {
             rect.y = 0f;
         }
+
         if (rect.y + rect.h >= window.rect.h)
         {
             rect.y = window.rect.h - rect.h;
